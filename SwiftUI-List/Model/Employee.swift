@@ -7,13 +7,13 @@
 
 import Foundation
 
-// MARK: - Company
-struct Company: Codable {
-    let company: CompanyClass
+// MARK: - CompanyContainer
+struct CompanyContainer: Codable {
+    let company: Company
 }
 
-// MARK: - CompanyClass
-struct CompanyClass: Codable {
+// MARK: - Company
+struct Company: Codable {
     let brand: String
     let employees: [Employee]
 }
