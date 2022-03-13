@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  ListView.swift
 //  SwiftUI-List
 //
 //  Created by Ethan on 09/03/2022.
@@ -7,15 +7,16 @@
 
 import SwiftUI
 
-struct ContentView: View {
+
+struct ListView: View {
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Text("TBD")
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ListView()
     }
 }

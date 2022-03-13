@@ -8,6 +8,14 @@
 import XCTest
 @testable import SwiftUI_List
 
+struct Afgr {
+    
+    
+    func goo(_ L: Int) -> Double {
+        return 0.0
+    }
+}
+
 class SwiftUI_ListTests: XCTestCase {
 
     override func setUpWithError() throws {
