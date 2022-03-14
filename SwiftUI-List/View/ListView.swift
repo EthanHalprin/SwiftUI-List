@@ -16,15 +16,18 @@ struct ListView: View {
             List(self.viewModel.employees) { employee in
                 EmployeeView(name: employee.name,
                              role: employee.title,
-                             imageName: "business-woman-icon-iconbunny")
+                             image: employee.pic)
             }.listStyle(GroupedListStyle())
              .navigationBarTitle("Employees")
              .toolbar {
                 ToolbarItem {
-                    //NavigationLink(destination: SettingsView()) {
-                        Image(systemName: "line.horizontal.3")
-                            .font(.system(size: 25))
-                            .foregroundColor(.blue)
+                    //
+                    // Uncomment this to apply action to the bar button:
+                    // NavigationLink(destination: SomeView()) {
+                    //
+                    Image(systemName: "line.horizontal.3")
+                        .font(.system(size: 25))
+                        .foregroundColor(.blue)
                     //}
                 }
             }
