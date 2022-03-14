@@ -18,7 +18,7 @@ struct EmployeeView: View {
                 .resizable()
                 .frame(width: 34, height: 34)
             VStack(alignment: .leading) {
-                //https://png.pngtree.com/png-clipart/20190520/original/pngtree-business-woman-line-filled-icon-png-image_3789239.jpg
+                //https://www.iconbunny.com/icons/media/catalog/product/1/2/1282.12-business-woman-icon-iconbunny.jpg
                 Text("\(name)")
                     .font(.system(size: 14, weight: .regular, design: .default))
                 Text("\(role)")

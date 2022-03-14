@@ -16,7 +16,7 @@ struct ListView: View {
             List(self.viewModel.employees) { employee in
                 EmployeeView(name: employee.name,
                              role: employee.title,
-                             imageName: "business-woman-1024")
+                             imageName: "business-woman-icon-iconbunny")
             }.listStyle(GroupedListStyle())
              .navigationBarTitle("Employees")
              .toolbar {
