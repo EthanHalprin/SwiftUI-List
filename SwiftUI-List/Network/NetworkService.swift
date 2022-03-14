@@ -1,5 +1,5 @@
 //
-//  NetworkProvider.swift
+//  NetworkService.swift
 //  SwiftUI-List
 //
 //  Created by Ethan on 13/03/2022.
@@ -8,16 +8,11 @@ import Foundation
 import Combine
 
 
-class NetworkProvider: ObservableObject {
+struct NetworkService {
     
     var cancellable: AnyCancellable?
-    fileprivate var url: String
     
-    init(_ url: String) {
-        self.url = url
-    }
-    
-    func fetch<T: Decodable>(_ callback: @escaping (T) -> Void) throws {
+    mutating func fetch<T: Decodable>(from url: String, _ callback: @escaping (T) -> Void) throws {
         
         // Define url according to endpoint found
         let url = URL(string: url)!

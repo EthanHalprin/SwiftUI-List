@@ -10,21 +10,25 @@ import SwiftUI
 class ViewModel: ObservableObject {
     
     @Published var employees = [Employee]()
-    fileprivate let networker: NetworkProvider!
+    var employeesDataLink: String
+    var network: NetworkService?
 
-    required init(contentLink: String) {
-        if contentLink.isValidURL {
-            networker = NetworkProvider(contentLink)
+    required init(url: String) {
+        if url.isValidURL {
+            employeesDataLink = url
         } else {
-            fatalError("PresenterViewModel: bad url")
+            fatalError("PresenterViewModel: bad url for employees data")
         }
     }
     
     func load() {
-        try? self.networker.fetch({ [weak self] (container: CompanyContainer) -> Void in
+        network = NetworkService()
+        
+        try? network!.fetch(from: employeesDataLink, { [weak self] (container: CompanyContainer) -> Void in
             guard let self = self else { return }
             self.employees = container.company.employees
             print(self.employees)
+            self.network = nil
         })
     }
  }

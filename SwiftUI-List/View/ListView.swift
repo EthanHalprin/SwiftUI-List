@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListView: View {
 
-    @StateObject var viewModel = ViewModel(contentLink: "https://raw.githubusercontent.com/EthanHalprin/github_EthanHalprin.github.io/master/company_repo.json")
+    @StateObject var viewModel = ViewModel(url: "https://raw.githubusercontent.com/EthanHalprin/github_EthanHalprin.github.io/master/company_repo.json")
 
     var body: some View {
         NavigationView {

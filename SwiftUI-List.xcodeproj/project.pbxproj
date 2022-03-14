@@ -11,7 +11,7 @@
 		AAC391F527DE7D2D0038239F /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391F327DE7D2D0038239F /* ListView.swift */; };
 		AAC391F727DE7D370038239F /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391F627DE7D370038239F /* Employee.swift */; };
 		AAC391F927DE7E3E0038239F /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391F827DE7E3E0038239F /* ViewModel.swift */; };
-		AAC391FC27DE84AC0038239F /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391FB27DE84AC0038239F /* NetworkProvider.swift */; };
+		AAC391FC27DE84AC0038239F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391FB27DE84AC0038239F /* NetworkService.swift */; };
 		AAE7B5D227D89C1100C086BC /* SwiftUI_ListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7B5D127D89C1100C086BC /* SwiftUI_ListApp.swift */; };
 		AAE7B5D627D89C1300C086BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAE7B5D527D89C1300C086BC /* Assets.xcassets */; };
 		AAE7B5D927D89C1300C086BC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAE7B5D827D89C1300C086BC /* Preview Assets.xcassets */; };
@@ -42,7 +42,7 @@
 		AAC391F327DE7D2D0038239F /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		AAC391F627DE7D370038239F /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		AAC391F827DE7E3E0038239F /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		AAC391FB27DE84AC0038239F /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
+		AAC391FB27DE84AC0038239F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		AAE7B5CE27D89C1100C086BC /* SwiftUI-List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE7B5D127D89C1100C086BC /* SwiftUI_ListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_ListApp.swift; sourceTree = "<group>"; };
 		AAE7B5D527D89C1300C086BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 		AAC391FA27DE84650038239F /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				AAC391FB27DE84AC0038239F /* NetworkProvider.swift */,
+				AAC391FB27DE84AC0038239F /* NetworkService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -306,7 +306,7 @@
 				AAC391F727DE7D370038239F /* Employee.swift in Sources */,
 				AAE7B5D227D89C1100C086BC /* SwiftUI_ListApp.swift in Sources */,
 				AAC391F527DE7D2D0038239F /* ListView.swift in Sources */,
-				AAC391FC27DE84AC0038239F /* NetworkProvider.swift in Sources */,
+				AAC391FC27DE84AC0038239F /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
