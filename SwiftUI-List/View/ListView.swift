@@ -13,14 +13,21 @@ struct ListView: View {
 
     var body: some View {
         NavigationView {
-            Text("List coming soon")
-                .navigationBarTitle(Text("Employees"))
-                .navigationBarItems(trailing: Button(action: {
-                                    // do something
-                                }) {
-                                    Image(systemName: "line.horizontal.3")
-                                        .imageScale(.large)
-                                })
+            List(self.viewModel.employees) { employee in
+                EmployeeView(name: employee.name,
+                             role: employee.title,
+                             imageName: "business-woman-1024")
+            }.listStyle(GroupedListStyle())
+             .navigationBarTitle("Employees")
+             .toolbar {
+                ToolbarItem {
+                    //NavigationLink(destination: SettingsView()) {
+                        Image(systemName: "line.horizontal.3")
+                            .font(.system(size: 25))
+                            .foregroundColor(.blue)
+                    //}
+                }
+            }
         }
         .onAppear {
             viewModel.load()
