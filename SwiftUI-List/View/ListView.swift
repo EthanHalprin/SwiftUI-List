@@ -32,8 +32,12 @@ struct ListView: View {
                 }
             }
         }
-        .onAppear {
-            viewModel.load()
+        .task {
+            do {
+                try await viewModel.fetchEmployees()
+            } catch {
+                print("Fetching employees failed with error: \(error.localizedDescription)")
+            }
         }
     }
 }

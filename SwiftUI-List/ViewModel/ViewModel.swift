@@ -21,15 +21,25 @@ class ViewModel: ObservableObject {
         }
     }
     
-    func load() {
+    func fetchEmployees() async throws {
         network = NetworkService()
         
-        try? network!.fetch(from: employeesDataLink, { [weak self] (container: CompanyContainer) -> Void in
-            guard let self = self else { return }
-            self.employees = container.company.employees
-            print(self.employees)
-            self.network = nil
-        })
+        do {
+            try network!.fetch(from: employeesDataLink, { [weak self] (container: CompanyContainer) -> Void in
+                guard let self = self else { return }
+                self.employees = container.company.employees
+                print("\n\nFetched \(self.employees.count) employees:")
+                print("-----------------------------------------")
+                for employee in self.employees {
+                    print("\(employee)")
+                }
+                print("-----------------------------------------\n\n")
+
+                self.network = nil
+            })
+        } catch let error as URLError {
+            throw error
+        }
     }
  }
 
