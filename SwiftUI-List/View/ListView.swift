@@ -18,8 +18,16 @@ struct ListView: View {
                              role: employee.title,
                              image: employee.pic)
             }.listStyle(GroupedListStyle())
-             .navigationBarTitle("Employees")
-             .toolbar {
+             .overlay {
+                 if viewModel.fetching {
+                     ProgressView("Fetching data, please wait...")
+                        .progressViewStyle(CircularProgressViewStyle(tint: .accentColor))
+                 }
+             }
+            // this animation is only run when the contents of the list view changes
+            .animation(.default, value: viewModel.employees)
+            .navigationBarTitle("Employees")
+            .toolbar {
                 ToolbarItem {
                     //
                     // Uncomment this to apply action to the bar button:
@@ -30,9 +38,15 @@ struct ListView: View {
                         .foregroundColor(.blue)
                     //}
                 }
-            }
-        }
+            } // .tooolbar
+        } // NavigationView
         .task {
+            
+            // If you wanna watch the ProgressBar - uncomment this
+            // line and comment the following do-catch block
+            //
+            // await viewModel.fetchEmployees(latency: 4)
+
             do {
                 try await viewModel.fetchEmployees()
             } catch {

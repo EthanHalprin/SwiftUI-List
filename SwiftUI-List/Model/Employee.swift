@@ -35,3 +35,11 @@ struct Address: Codable {
     let street, city: String
     let zip: Int
 }
+
+// MARK: - Address
+extension Employee: Equatable {
+    static func == (lhs: Employee, rhs: Employee) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
