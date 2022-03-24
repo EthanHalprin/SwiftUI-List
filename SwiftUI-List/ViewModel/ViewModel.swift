@@ -25,7 +25,8 @@ class ViewModel: ObservableObject {
     
     func fetchEmployees() async throws {
         network = NetworkService()
-        
+        fetching = true
+
         do {
             try network!.fetch(from: employeesDataLink, { [weak self] (container: CompanyContainer) -> Void in
                 guard let self = self else { return }
@@ -38,6 +39,8 @@ class ViewModel: ObservableObject {
                 print("-----------------------------------------\n\n")
 
                 self.network = nil
+                self.fetching = false // should be mutexed here, but since no other threads change 'fetching'
+                                      // at this point, we'll drop the Lock for now
             })
         } catch let error as URLError {
             throw error

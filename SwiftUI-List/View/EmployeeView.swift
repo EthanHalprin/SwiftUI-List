@@ -23,9 +23,10 @@ struct EmployeeView: View {
             VStack(alignment: .leading) {
                 Text("\(name)")
                     .font(.system(size: 14, weight: .regular, design: .default))
+                    .foregroundColor(Color(.label))
                 Text("\(role)")
-                    .font(.system(size: 13, weight: .light, design: .default))
-                    .foregroundColor(.blue)
+                    .font(.system(size: 13, weight: .medium, design: .default))
+                    .foregroundColor(Color(.systemIndigo))
             }
         }
     }
