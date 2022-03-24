@@ -24,22 +24,9 @@ struct ListView: View {
                         .progressViewStyle(CircularProgressViewStyle(tint: .accentColor))
                  }
              }
-            // this animation is only run when the contents of the list view changes
-            .animation(.default, value: viewModel.employees)
-            .navigationBarTitle("Employees")
-            .toolbar {
-                ToolbarItem {
-                    //
-                    // Uncomment this to apply action to the bar button:
-                    // NavigationLink(destination: SomeView()) {
-                    //
-                    Image(systemName: "line.horizontal.3")
-                        .font(.system(size: 25))
-                        .foregroundColor(.blue)
-                    //}
-                }
-            } // .tooolbar
-        } // NavigationView
+             .animation(.default, value: viewModel.employees)
+             .navigationBarTitle("Employees")
+        }
         .task {
             
             // If you wanna watch the ProgressBar - uncomment this
