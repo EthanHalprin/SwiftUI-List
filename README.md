@@ -16,5 +16,11 @@ MIT
 
 ### Avatar Pics Credits
 
-See the "pic" urls in this json :
+Refer to image urls in json
+
 https://github.com/EthanHalprin/github_EthanHalprin.github.io/blob/master/company_repo.json
+
+The default avatar
+
+https://thumbs.dreamstime.com/b/default-female-avatar-profile-picture-icon-grey-woman-photo-placeholder-vector-illustration-88413637.jpg
+
