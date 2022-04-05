@@ -27,6 +27,13 @@ struct ListView: View {
              }
              .animation(.default, value: viewModel.employees)
              .navigationBarTitle("Employees")
+             .toolbar {
+                 Button {
+                     self.viewModel.refresh.toggle()
+                 } label: {
+                     Image(systemName: "square.and.arrow.down")
+                 }
+             }
         }
         .task {
             //

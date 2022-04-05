@@ -12,6 +12,11 @@ class ViewModel: ObservableObject {
     
     @Published var employees = [Employee]()
     @Published var fetching = false
+    @Published var refresh = false {
+        didSet {
+            self.refreshEmployees()
+        }
+    }
     var cache = ImageCache()
     private var lastFetchTimestamp: TimeInterval?
     private var dataLink: String
@@ -48,6 +53,19 @@ class ViewModel: ObservableObject {
         } catch let error as URLError {
             throw error
         }
+    }
+    
+    fileprivate func refreshEmployees() {
+        
+        fetching = true
+
+        try? network.fetch(from: dataLink, { [weak self] (container: CompanyContainer) -> Void in
+            guard let self = self else { return }
+            self.employees = container.company.employees
+            self.lastFetchTimestamp = NSDate().timeIntervalSince1970
+            self.fetching = false // since no other threads change 'fetching', no need to mutex it
+            print("------------- Refreshed Done --------------")
+        })
     }
 }
 
