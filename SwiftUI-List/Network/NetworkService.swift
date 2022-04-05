@@ -32,7 +32,9 @@ struct NetworkService {
                     print ("Received completion: \($0).")
                   },
                   receiveValue: { T in
-                    print ("Received: \(T)")
+                    print("\n-------NetworkService Received Data--------")
+                    print ("\(T)")
+                    print("-------------------------------------------\n")
                     callback(T)
             })
     }

@@ -16,7 +16,8 @@ struct ListView: View {
             List(self.viewModel.employees) { employee in
                 EmployeeView(name: employee.name,
                              role: employee.title,
-                             image: employee.pic)
+                             url: employee.pic,
+                             cache: self.viewModel.cache)
             }.listStyle(GroupedListStyle())
              .overlay {
                  if viewModel.fetching {
@@ -28,12 +29,12 @@ struct ListView: View {
              .navigationBarTitle("Employees")
         }
         .task {
-            
-            // If you wanna watch the ProgressBar - uncomment this
+            //
+            // If you wanna watch the ProgressBar in action - uncomment this
             // line and comment the following do-catch block
             //
             // await viewModel.fetchEmployees(latency: 4)
-
+            //
             do {
                 try await viewModel.fetchEmployees()
             } catch {

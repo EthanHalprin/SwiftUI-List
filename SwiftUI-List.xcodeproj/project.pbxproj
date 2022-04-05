@@ -18,6 +18,7 @@
 		AAE7B5E327D89C1300C086BC /* SwiftUI_ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7B5E227D89C1300C086BC /* SwiftUI_ListTests.swift */; };
 		AAE7B5ED27D89C1300C086BC /* SwiftUI_ListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7B5EC27D89C1300C086BC /* SwiftUI_ListUITests.swift */; };
 		AAE7B5EF27D89C1300C086BC /* SwiftUI_ListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7B5EE27D89C1300C086BC /* SwiftUI_ListUITestsLaunchTests.swift */; };
+		AAE9B16727FB8C19002E3191 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9B16627FB8C19002E3191 /* ImageCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		AAE7B5E827D89C1300C086BC /* SwiftUI-ListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftUI-ListUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE7B5EC27D89C1300C086BC /* SwiftUI_ListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_ListUITests.swift; sourceTree = "<group>"; };
 		AAE7B5EE27D89C1300C086BC /* SwiftUI_ListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_ListUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AAE9B16627FB8C19002E3191 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		AAC391F127DE7D0C0038239F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				AAE9B16627FB8C19002E3191 /* ImageCache.swift */,
 				AAC391F827DE7E3E0038239F /* ViewModel.swift */,
 			);
 			path = ViewModel;
@@ -306,6 +309,7 @@
 				AAC391F727DE7D370038239F /* Employee.swift in Sources */,
 				AAE7B5D227D89C1100C086BC /* SwiftUI_ListApp.swift in Sources */,
 				AAC391F527DE7D2D0038239F /* ListView.swift in Sources */,
+				AAE9B16727FB8C19002E3191 /* ImageCache.swift in Sources */,
 				AAC391FC27DE84AC0038239F /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

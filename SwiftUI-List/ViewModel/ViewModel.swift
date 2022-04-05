@@ -7,40 +7,43 @@
 import Foundation
 import SwiftUI
 
+
 class ViewModel: ObservableObject {
     
     @Published var employees = [Employee]()
     @Published var fetching = false
-
-    var employeesDataLink: String
-    var network: NetworkService?
+    var cache = ImageCache()
+    private var lastFetchTimestamp: TimeInterval?
+    private var dataLink: String
+    private lazy var network = NetworkService()
 
     required init(url: String) {
         if url.isValidURL {
-            employeesDataLink = url
+            dataLink = url
         } else {
             fatalError("PresenterViewModel: bad url for employees data")
         }
     }
     
     func fetchEmployees() async throws {
-        network = NetworkService()
+        
+        if let lastFetch = self.lastFetchTimestamp {
+            let currTime = NSDate().timeIntervalSince1970
+            // 2 minutes refesh minimal
+            guard currTime - lastFetch > 120.0 else {
+                print("----- No Fetch (Refresh Time Quota) -------")
+                return
+            }
+        }
+        
         fetching = true
 
         do {
-            try network!.fetch(from: employeesDataLink, { [weak self] (container: CompanyContainer) -> Void in
+            try network.fetch(from: dataLink, { [weak self] (container: CompanyContainer) -> Void in
                 guard let self = self else { return }
                 self.employees = container.company.employees
-                print("\n\nFetched \(self.employees.count) employees:")
-                print("-----------------------------------------")
-                for employee in self.employees {
-                    print("\(employee)")
-                }
-                print("-----------------------------------------\n\n")
-
-                self.network = nil
-                self.fetching = false // should be mutexed here, but since no other threads change 'fetching'
-                                      // at this point, we'll drop the Lock for now
+                self.lastFetchTimestamp = NSDate().timeIntervalSince1970
+                self.fetching = false // since no other threads change 'fetching', no need to mutex it
             })
         } catch let error as URLError {
             throw error
@@ -76,6 +79,7 @@ extension ViewModel {
         }
     }
 }
+
 extension String {
     var isValidURL: Bool {
         if let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue),
