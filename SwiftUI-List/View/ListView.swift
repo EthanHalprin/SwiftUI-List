@@ -31,7 +31,7 @@ struct ListView: View {
                  Button {
                      self.viewModel.refreshEmployees()
                  } label: {
-                     Image(systemName: "square.and.arrow.down")
+                     Image(systemName: "arrow.counterclockwise") // 􀅉
                  }
              }
         }
