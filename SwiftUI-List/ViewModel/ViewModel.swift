@@ -12,11 +12,6 @@ class ViewModel: ObservableObject {
     
     @Published var employees = [Employee]()
     @Published var fetching = false
-    @Published var refresh = false {
-        didSet {
-            self.refreshEmployees()
-        }
-    }
     var cache = ImageCache()
     private var lastFetchTimestamp: TimeInterval?
     private var dataLink: String
@@ -55,7 +50,7 @@ class ViewModel: ObservableObject {
         }
     }
     
-    fileprivate func refreshEmployees() {
+    func refreshEmployees() {
         
         fetching = true
 
@@ -64,7 +59,7 @@ class ViewModel: ObservableObject {
             self.employees = container.company.employees
             self.lastFetchTimestamp = NSDate().timeIntervalSince1970
             self.fetching = false // since no other threads change 'fetching', no need to mutex it
-            print("------------- Refreshed Done --------------")
+            print("------------- Refresh Done --------------")
         })
     }
 }

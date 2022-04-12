@@ -29,7 +29,7 @@ struct ListView: View {
              .navigationBarTitle("Employees")
              .toolbar {
                  Button {
-                     self.viewModel.refresh.toggle()
+                     self.viewModel.refreshEmployees()
                  } label: {
                      Image(systemName: "square.and.arrow.down")
                  }
