@@ -50,6 +50,10 @@ class ImageCache {
         let key = suString(url)
         cache.setObject(img, forKey: key)
     }
+    
+    func flush() {
+        cache.removeAllObjects()
+    }
 }
 
 

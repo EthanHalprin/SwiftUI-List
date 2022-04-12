@@ -53,7 +53,10 @@ class ViewModel: ObservableObject {
     func refreshEmployees() {
         
         fetching = true
-
+        
+        cache.flush()
+        self.employees.removeAll()
+        
         try? network.fetch(from: dataLink, { [weak self] (container: CompanyContainer) -> Void in
             guard let self = self else { return }
             self.employees = container.company.employees
