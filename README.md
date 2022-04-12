@@ -1,12 +1,25 @@
 # SwiftUI-List
-Example for a List in SwiftUI. The content is loaded dynamically from a file server.
-Images are also fetched from assorted urls on servers.
+Example for a List in SwiftUI. Content is loaded dynamically from a file server. Images are fetched and cached.
 
-Design Pattern: MVVM
+Features:
 
-Network: Combine
+* MVVM
 
-Pre-Requisities: iOS 15 Xcode 13
+* Combine Networking
+
+* AsyncImage
+
+* Image cache
+
+* Image Placholders
+
+* Timeout
+
+* Refresh Button
+
+* ProgressView
+
+[Pre-Requisities: iOS 15 Xcode 13]
 
 ## License
 MIT
