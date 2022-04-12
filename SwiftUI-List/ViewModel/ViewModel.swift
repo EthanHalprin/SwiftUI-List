@@ -35,7 +35,7 @@ class ViewModel: ObservableObject {
         if let lastFetch = self.lastFetchTimestamp {
             let currTime = NSDate().timeIntervalSince1970
             // 2 minutes refesh minimal
-            guard currTime - lastFetch > 120.0 else {
+            guard currTime - lastFetch < 120.0 else {
                 print("----- No Fetch (Refresh Time Quota) -------")
                 return
             }
