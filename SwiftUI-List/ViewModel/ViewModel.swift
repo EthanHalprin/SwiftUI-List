@@ -67,35 +67,6 @@ class ViewModel: ObservableObject {
     }
 }
 
-extension ViewModel {
-    // for testing purposes
-    @MainActor
-    func fetchEmployees(latency: Double = 3.0) async  {
-
-        fetching = true
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + latency) {
-            self.employees.append(Employee(id: "1111",
-                                           name: "Test1",
-                                           title: "title1",
-                                           address: Address(street: "street", city: "city", zip: 11111),
-                                           pic: "https://cdn-icons-png.flaticon.com/512/190/190682.png"))
-            self.employees.append(Employee(id: "2222",
-                                           name: "Test2",
-                                           title: "title2",
-                                           address: Address(street: "street", city: "city", zip: 22222),
-                                           pic: "https://cdn4.iconfinder.com/data/icons/business-users-1/256/woman_black_business.png"))
-            self.employees.append(Employee(id: "3333",
-                                           name: "Test3",
-                                           title: "title3",
-                                           address: Address(street: "street", city: "city", zip: 33333),
-                                           pic: "https://cdn-icons-png.flaticon.com/512/190/190682.png"))
-
-            self.fetching = false
-        }
-    }
-}
-
 extension String {
     var isValidURL: Bool {
         if let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue),

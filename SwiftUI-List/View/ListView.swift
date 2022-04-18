@@ -21,6 +21,8 @@ struct ListView: View {
             }.listStyle(GroupedListStyle())
              .overlay {
                  if viewModel.fetching {
+                     Color(.systemBackground)
+                         .edgesIgnoringSafeArea(.all)
                      ProgressView("Fetching data, please wait...")
                         .progressViewStyle(CircularProgressViewStyle(tint: .accentColor))
                  }
@@ -36,12 +38,6 @@ struct ListView: View {
              }
         }
         .task {
-            //
-            // If you wanna watch the ProgressBar in action - uncomment this
-            // line and comment the following do-catch block
-            //
-            // await viewModel.fetchEmployees(latency: 4)
-            //
             do {
                 try await viewModel.fetchEmployees()
             } catch {
