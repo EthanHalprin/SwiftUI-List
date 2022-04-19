@@ -14,9 +14,9 @@ struct ListView: View {
     var body: some View {
         NavigationView {
             List(self.viewModel.hats) { hat in
-                HatView(viewModel: HatViewModel(hat: hat, cache: viewModel.cache))
+                HatView(viewModel: HatViewModel(hat: hat))
                     .listRowSeparator(.visible)
-                    .listRowSeparatorTint(.gray)
+                    .listRowSeparatorTint(.black)
             }.listStyle(PlainListStyle())
              .overlay {
                  FetcherOverlay(fetching: viewModel.fetching)

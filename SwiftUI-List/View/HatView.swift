@@ -13,16 +13,16 @@ struct HatView: View {
     
     var body: some View {
         HStack {
-            if let cachedImage = viewModel.cache?.getImage(by: viewModel.hat?.pic ?? MockSample.emptyHat.pic) {
+            if let cachedImage = ImageCache.getImage(by: viewModel.hat.pic) {
                 cachedImage
                     .resizable()
                     .frame(width: viewModel.width, height: viewModel.height)
             } else {
-                AsyncImage(url: URL(string: viewModel.hat?.pic ?? "")) { image in
+                AsyncImage(url: URL(string: viewModel.hat.pic)) { image in
                     image
                         .resizable()
                         .frame(width: viewModel.width, height: viewModel.height)
-                        .onAppear { viewModel.cache?.setImage(image, url: viewModel.hat?.pic ?? MockSample.emptyHat.pic) }
+                        .onAppear { ImageCache.setImage(image, url: viewModel.hat.pic) }
                 } placeholder: {
                     if viewModel.picTimeout == 0 {
                         Image("stockio.com.hat")
@@ -34,12 +34,12 @@ struct HatView: View {
                 }
                 
                 VStack(alignment: .leading) {
-                    Text("\(viewModel.hat?.title ?? "")")
+                    Text("\(viewModel.hat.title)")
                         .font(.system(size: viewModel.primaryFontSize,
                                       weight: .medium,
                                       design: .default))
                         .foregroundColor(Color(.label))
-                    Text("\(viewModel.hat?.animal ?? "")")
+                    Text("\(viewModel.hat.animal)")
                         .font(.system(size: viewModel.secondaryFontSize,
                                       weight: .regular,
                                       design: .default))
@@ -52,14 +52,4 @@ struct HatView: View {
             }
         }
     }
-}
-
-struct MockSample {
-    static let emptyHat = Hat(id: "000",
-                              type: "",
-                              animal: "N/A",
-                              title: "N/A",
-                              size: "",
-                              hatDescription: " ",
-                              pic: "")
 }

@@ -25,18 +25,18 @@ class suImage: NSObject {
 }
 
 class ImageCache {
-    private let cache = NSCache<suString, suImage>()
+    static var shared = NSCache<suString, suImage>()
     
     init() {
         // maximum fixed cost: 100MB
-        cache.totalCostLimit = 100_000_000
+        ImageCache.shared.totalCostLimit = 100_000_000
     }
     
-    func getImage(by url: String) -> Image? {
+    static func getImage(by url: String) -> Image? {
         
         let key = suString(url)
         
-        if let cachedImage = cache.object(forKey: key) {
+        if let cachedImage = ImageCache.shared.object(forKey: key) {
             print("----------- Cache Hit √ -------------------")
             return cachedImage.image
         } else {
@@ -45,14 +45,14 @@ class ImageCache {
         }
     }
     
-    func setImage(_ image: Image, url: String) {
+    static func setImage(_ image: Image, url: String) {
         let img = suImage(image)
         let key = suString(url)
-        cache.setObject(img, forKey: key)
+        ImageCache.shared.setObject(img, forKey: key)
     }
     
-    func flush() {
-        cache.removeAllObjects()
+    static func flush() {
+        ImageCache.shared.removeAllObjects()
     }
 }
 

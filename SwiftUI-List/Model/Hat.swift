@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Hat
-struct Hat: Codable, Identifiable {
+struct Hat: Codable {
     let id, type, animal, title: String
     let size, hatDescription: String
     let pic: String
@@ -20,6 +20,17 @@ struct Hat: Codable, Identifiable {
     }
 }
 
-extension Hat: Equatable {
-    
+extension Hat: Identifiable { }
+extension Hat: Equatable { }
+
+extension Hat {
+    init() {
+        self.id = ""
+        self.type = ""
+        self.animal = ""
+        self.title = ""
+        self.size = ""
+        self.hatDescription = ""
+        self.pic = ""
+    }
 }
