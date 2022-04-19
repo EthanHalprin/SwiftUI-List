@@ -35,6 +35,7 @@ class ViewModel: ObservableObject {
         let code = URLError.Code(rawValue: 500)
         let err = URLError(code)
         throw err
+         
          */
 
         if let lastFetch = self.lastFetchTimestamp {

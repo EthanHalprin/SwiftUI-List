@@ -20,34 +20,39 @@ struct ListView: View {
                              cache: self.viewModel.cache)
             }.listStyle(GroupedListStyle())
              .overlay {
-                 if viewModel.fetching {
-                     Color(.systemBackground)
-                         .edgesIgnoringSafeArea(.all)
-                     ProgressView("Fetching data, please wait...")
-                        .progressViewStyle(CircularProgressViewStyle(tint: .accentColor))
-                 }
+                 FetcherOverlay(fetching: viewModel.fetching)
              }
              .animation(.default, value: viewModel.employees)
              .navigationBarTitle("Employees")
              .toolbar {
-                 Button {
-                     self.viewModel.refreshEmployees()
-                 } label: {
-                     Image(systemName: "arrow.counterclockwise") // 􀅉
-                 }
+                 Button { self.viewModel.refreshEmployees() }
+                 label: { Image(systemName: "arrow.counterclockwise") }
              }
         }
         .task {
             await fetchTaskHandler()
         }
-        .alert(viewModel.networkError?.title ?? "", isPresented: $viewModel.didError, presenting: viewModel.networkError) { error in
-            Button {
-                print("Network error alert closed")
-            } label: {
-                Text("Close")
-            }
+        .alert(viewModel.networkError?.title ?? "Error",
+               isPresented: $viewModel.didError,
+               presenting: viewModel.networkError) { error in
+            Button { print("Network error alert closed") }
+            label: { Text("Close") }
         } message: { error in
             Text("\nError \(error.code): " + error.description + "\n")
+        }
+    }
+}
+
+struct FetcherOverlay: View {
+    
+    var fetching = false
+    
+    var body: some View {
+        if fetching {
+            Color(.systemBackground)
+                .edgesIgnoringSafeArea(.all)
+            ProgressView("Fetching data, please wait...")
+               .progressViewStyle(CircularProgressViewStyle(tint: .accentColor))
         }
     }
 }
@@ -62,9 +67,11 @@ extension ListView {
                 fatalError("Unknown Error. If this keeps happening, contact your system administrator")
             }
             self.viewModel.networkError = NetworkError(code: urlError.code.rawValue,
-                                                       title: "Network",
+                                                       title: "Network Error",
                                                        description: urlError.localizedDescription)
-            self.viewModel.didError = true
+            DispatchQueue.main.async {
+                self.viewModel.didError = true
+            }
         }
     }
 }
