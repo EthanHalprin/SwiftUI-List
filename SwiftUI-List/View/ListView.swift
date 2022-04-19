@@ -19,7 +19,9 @@ struct ListView: View {
                     .listRowSeparatorTint(.black)
             }.listStyle(PlainListStyle())
              .padding(.top, 20)
-             .overlay { FetcherOverlay(fetching: viewModel.fetching) }
+             .overlay {
+                 FetcherOverlay(fetching: $viewModel.fetching)
+             }
              .animation(.default, value: viewModel.hats)
              .navigationBarTitle("Mesh Truckers")
              .toolbar {
@@ -27,14 +29,16 @@ struct ListView: View {
                  label: { Image(systemName: "arrow.counterclockwise") }
              }
         }
-        .task {
-            await fetchTaskHandler()
-        }
+        .task { await fetchTaskHandler() }
         .alert(viewModel.networkError?.title ?? "Error",
                isPresented: $viewModel.didError,
                presenting: viewModel.networkError) { error in
-            Button { print("Network error alert closed") }
-            label: { Text("Close") }
+            Button {
+                print("Network error alert closed")
+            }
+            label: {
+                Text("Close")
+            }
         } message: { error in
             Text("\nError \(error.code): " + error.description + "\n")
         }
@@ -43,7 +47,7 @@ struct ListView: View {
 
 struct FetcherOverlay: View {
     
-    var fetching = false
+    @Binding var fetching: Bool
     
     var body: some View {
         if fetching {

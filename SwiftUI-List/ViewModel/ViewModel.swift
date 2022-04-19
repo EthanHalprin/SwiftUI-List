@@ -13,7 +13,7 @@ class ListViewModel: ObservableObject {
     @Published var hats = [Hat]()
     @Published var fetching = false
     @Published var didError = false
-    fileprivate let dataUrl = "https://raw.githubusercontent.com/EthanHalprin/OrderingAppData/main/storeData.json?token=GHSAT0AAAAAABTXEURG7CYGOFOJOIXKNFGOYS7DP4A"
+    fileprivate let dataUrl = "https://gist.githubusercontent.com/raw/3b15d0220b17236514acf8803835ded6/hat_store.json"
     var networkError: NetworkError?
     var cache = ImageCache()
     private var lastFetchTimestamp: TimeInterval?
@@ -48,7 +48,10 @@ class ListViewModel: ObservableObject {
                 guard let self = self else { return }
                 self.hats = container.store.hats
                 self.lastFetchTimestamp = NSDate().timeIntervalSince1970
-                self.fetching = false // since no other threads change 'fetching', no need to mutex it
+                DispatchQueue.main.async {
+                    // since no other threads change 'fetching', no need to mutex it
+                    self.fetching = false
+                }
             })
         } catch let error as URLError {
             throw error
@@ -58,7 +61,9 @@ class ListViewModel: ObservableObject {
     // cannot throw on this one, due to the fact it is used from Button press handler
     func refreshMerchandise() {
         
-        fetching = true
+        DispatchQueue.main.async {
+            self.fetching = true
+        }
         
         ImageCache.flush()
         self.hats.removeAll()
@@ -67,7 +72,9 @@ class ListViewModel: ObservableObject {
             guard let self = self else { return }
             self.hats = container.store.hats
             self.lastFetchTimestamp = NSDate().timeIntervalSince1970
-            self.fetching = false // since no other threads change 'fetching', no need to mutex it
+            DispatchQueue.main.async {
+                self.fetching = false
+            }
             print("------------- Refresh Done --------------")
         })
     }
