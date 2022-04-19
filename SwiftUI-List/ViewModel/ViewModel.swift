@@ -8,27 +8,19 @@ import Foundation
 import SwiftUI
 
 
-class ViewModel: ObservableObject {
+class ListViewModel: ObservableObject {
     
-    @Published var employees = [Employee]()
+    @Published var hats = [Hat]()
     @Published var fetching = false
     @Published var didError = false
+    fileprivate let dataUrl = "https://raw.githubusercontent.com/EthanHalprin/OrderingAppData/main/storeData.json?token=GHSAT0AAAAAABTXEURH45GJWSJUQHRUENEEYS7C4LA"
     var networkError: NetworkError?
-
     var cache = ImageCache()
     private var lastFetchTimestamp: TimeInterval?
-    private var dataLink: String
     private lazy var network = NetworkService()
-
-    required init(url: String) {
-        if url.isValidURL {
-            dataLink = url
-        } else {
-            fatalError("PresenterViewModel: bad url for employees data")
-        }
-    }
     
-    func fetchEmployees() async throws {
+    
+    func fetchMerchandise() async throws {
         
         /* Test Alert (to be removed)
          
@@ -47,12 +39,14 @@ class ViewModel: ObservableObject {
             }
         }
         
-        fetching = true
-
+        DispatchQueue.main.async {
+            self.fetching = true
+        }
+        
         do {
-            try network.fetch(from: dataLink, { [weak self] (container: CompanyContainer) -> Void in
+            try network.fetch(from: dataUrl, { [weak self] (container: StoreContainer) -> Void in
                 guard let self = self else { return }
-                self.employees = container.company.employees
+                self.hats = container.store.hats
                 self.lastFetchTimestamp = NSDate().timeIntervalSince1970
                 self.fetching = false // since no other threads change 'fetching', no need to mutex it
             })
@@ -62,16 +56,16 @@ class ViewModel: ObservableObject {
     }
     
     // cannot throw on this one, due to the fact it is used from Button press handler
-    func refreshEmployees() {
+    func refreshMerchandise() {
         
         fetching = true
         
         cache.flush()
-        self.employees.removeAll()
+        self.hats.removeAll()
         
-        try? network.fetch(from: dataLink, { [weak self] (container: CompanyContainer) -> Void in
+        try? network.fetch(from: dataUrl, { [weak self] (container: StoreContainer) -> Void in
             guard let self = self else { return }
-            self.employees = container.company.employees
+            self.hats = container.store.hats
             self.lastFetchTimestamp = NSDate().timeIntervalSince1970
             self.fetching = false // since no other threads change 'fetching', no need to mutex it
             print("------------- Refresh Done --------------")

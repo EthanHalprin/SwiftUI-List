@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA678193280F368F00CA4CAB /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA678192280F368F00CA4CAB /* ImageCache.swift */; };
+		AA678195280F4A2700CA4CAB /* Hat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA678194280F4A2700CA4CAB /* Hat.swift */; };
+		AA678197280F4A7200CA4CAB /* HatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA678196280F4A7200CA4CAB /* HatViewModel.swift */; };
 		AA7C4930280F29E400CF6936 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C492F280F29E400CF6936 /* NetworkError.swift */; };
-		AAC391F427DE7D2D0038239F /* EmployeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391F227DE7D2D0038239F /* EmployeeView.swift */; };
+		AAC391F427DE7D2D0038239F /* HatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391F227DE7D2D0038239F /* HatView.swift */; };
 		AAC391F527DE7D2D0038239F /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391F327DE7D2D0038239F /* ListView.swift */; };
-		AAC391F727DE7D370038239F /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391F627DE7D370038239F /* Employee.swift */; };
+		AAC391F727DE7D370038239F /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391F627DE7D370038239F /* Store.swift */; };
 		AAC391F927DE7E3E0038239F /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391F827DE7E3E0038239F /* ViewModel.swift */; };
 		AAC391FC27DE84AC0038239F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391FB27DE84AC0038239F /* NetworkService.swift */; };
 		AAE7B5D227D89C1100C086BC /* SwiftUI_ListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7B5D127D89C1100C086BC /* SwiftUI_ListApp.swift */; };
@@ -19,7 +22,6 @@
 		AAE7B5E327D89C1300C086BC /* SwiftUI_ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7B5E227D89C1300C086BC /* SwiftUI_ListTests.swift */; };
 		AAE7B5ED27D89C1300C086BC /* SwiftUI_ListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7B5EC27D89C1300C086BC /* SwiftUI_ListUITests.swift */; };
 		AAE7B5EF27D89C1300C086BC /* SwiftUI_ListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7B5EE27D89C1300C086BC /* SwiftUI_ListUITestsLaunchTests.swift */; };
-		AAE9B16727FB8C19002E3191 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9B16627FB8C19002E3191 /* ImageCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,10 +42,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA678192280F368F00CA4CAB /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		AA678194280F4A2700CA4CAB /* Hat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hat.swift; sourceTree = "<group>"; };
+		AA678196280F4A7200CA4CAB /* HatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HatViewModel.swift; sourceTree = "<group>"; };
 		AA7C492F280F29E400CF6936 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
-		AAC391F227DE7D2D0038239F /* EmployeeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeView.swift; sourceTree = "<group>"; };
+		AAC391F227DE7D2D0038239F /* HatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HatView.swift; sourceTree = "<group>"; };
 		AAC391F327DE7D2D0038239F /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
-		AAC391F627DE7D370038239F /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
+		AAC391F627DE7D370038239F /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		AAC391F827DE7E3E0038239F /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		AAC391FB27DE84AC0038239F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		AAE7B5CE27D89C1100C086BC /* SwiftUI-List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,7 +60,6 @@
 		AAE7B5E827D89C1300C086BC /* SwiftUI-ListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftUI-ListUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE7B5EC27D89C1300C086BC /* SwiftUI_ListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_ListUITests.swift; sourceTree = "<group>"; };
 		AAE7B5EE27D89C1300C086BC /* SwiftUI_ListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_ListUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		AAE9B16627FB8C19002E3191 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +90,8 @@
 		AAC391EE27DE7CC50038239F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AAC391F627DE7D370038239F /* Employee.swift */,
+				AAC391F627DE7D370038239F /* Store.swift */,
+				AA678194280F4A2700CA4CAB /* Hat.swift */,
 				AA7C492F280F29E400CF6936 /* NetworkError.swift */,
 			);
 			path = Model;
@@ -96,7 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				AAC391F327DE7D2D0038239F /* ListView.swift */,
-				AAC391F227DE7D2D0038239F /* EmployeeView.swift */,
+				AAC391F227DE7D2D0038239F /* HatView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -104,18 +109,19 @@
 		AAC391F127DE7D0C0038239F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				AAE9B16627FB8C19002E3191 /* ImageCache.swift */,
 				AAC391F827DE7E3E0038239F /* ViewModel.swift */,
+				AA678196280F4A7200CA4CAB /* HatViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		AAC391FA27DE84650038239F /* Network */ = {
+		AAC391FA27DE84650038239F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AA678192280F368F00CA4CAB /* ImageCache.swift */,
 				AAC391FB27DE84AC0038239F /* NetworkService.swift */,
 			);
-			path = Network;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		AAE7B5C527D89C1100C086BC = {
@@ -144,7 +150,7 @@
 				AAC391EE27DE7CC50038239F /* Model */,
 				AAC391EF27DE7CD30038239F /* View */,
 				AAC391F127DE7D0C0038239F /* ViewModel */,
-				AAC391FA27DE84650038239F /* Network */,
+				AAC391FA27DE84650038239F /* Services */,
 				AAE7B5D127D89C1100C086BC /* SwiftUI_ListApp.swift */,
 				AAE7B5D527D89C1300C086BC /* Assets.xcassets */,
 				AAE7B5D727D89C1300C086BC /* Preview Content */,
@@ -309,11 +315,13 @@
 			files = (
 				AAC391F927DE7E3E0038239F /* ViewModel.swift in Sources */,
 				AA7C4930280F29E400CF6936 /* NetworkError.swift in Sources */,
-				AAC391F427DE7D2D0038239F /* EmployeeView.swift in Sources */,
-				AAC391F727DE7D370038239F /* Employee.swift in Sources */,
+				AA678193280F368F00CA4CAB /* ImageCache.swift in Sources */,
+				AAC391F427DE7D2D0038239F /* HatView.swift in Sources */,
+				AAC391F727DE7D370038239F /* Store.swift in Sources */,
 				AAE7B5D227D89C1100C086BC /* SwiftUI_ListApp.swift in Sources */,
+				AA678195280F4A2700CA4CAB /* Hat.swift in Sources */,
 				AAC391F527DE7D2D0038239F /* ListView.swift in Sources */,
-				AAE9B16727FB8C19002E3191 /* ImageCache.swift in Sources */,
+				AA678197280F4A7200CA4CAB /* HatViewModel.swift in Sources */,
 				AAC391FC27DE84AC0038239F /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

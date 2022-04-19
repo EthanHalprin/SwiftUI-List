@@ -9,23 +9,22 @@ import SwiftUI
 
 struct ListView: View {
 
-    @StateObject var viewModel = ViewModel(url: "https://raw.githubusercontent.com/EthanHalprin/github_EthanHalprin.github.io/master/company_repo.json")
+    @StateObject var viewModel = ListViewModel()
     
     var body: some View {
         NavigationView {
-            List(self.viewModel.employees) { employee in
-                EmployeeView(name: employee.name,
-                             role: employee.title,
-                             url: employee.pic,
-                             cache: self.viewModel.cache)
-            }.listStyle(GroupedListStyle())
+            List(self.viewModel.hats) { hat in
+                HatView(viewModel: HatViewModel(hat: hat, cache: viewModel.cache))
+                    .listRowSeparator(.visible)
+                    .listRowSeparatorTint(.gray)
+            }.listStyle(PlainListStyle())
              .overlay {
                  FetcherOverlay(fetching: viewModel.fetching)
              }
-             .animation(.default, value: viewModel.employees)
-             .navigationBarTitle("Employees")
+             .animation(.default, value: viewModel.hats)
+             .navigationBarTitle("Mesh Truckers")
              .toolbar {
-                 Button { self.viewModel.refreshEmployees() }
+                 Button { self.viewModel.refreshMerchandise() }
                  label: { Image(systemName: "arrow.counterclockwise") }
              }
         }
@@ -60,9 +59,9 @@ struct FetcherOverlay: View {
 extension ListView {
     fileprivate func fetchTaskHandler() async {
         do {
-            try await viewModel.fetchEmployees()
+            try await viewModel.fetchMerchandise()
         } catch {
-            print("Fetching employees failed with error: \(error.localizedDescription)")
+            print("Fetching merchandise failed with error: \(error.localizedDescription)")
             guard let urlError = error as? URLError else {
                 fatalError("Unknown Error. If this keeps happening, contact your system administrator")
             }
