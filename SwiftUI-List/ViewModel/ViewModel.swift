@@ -27,6 +27,11 @@ class ViewModel: ObservableObject {
     
     func fetchEmployees() async throws {
         
+        /* Test Alert (to be removed)
+        let code = URLError.Code(rawValue: 500)
+        let err = URLError(code)
+        throw err
+        */
         if let lastFetch = self.lastFetchTimestamp {
             let currTime = NSDate().timeIntervalSince1970
             // 2 minutes refesh minimal
@@ -50,6 +55,7 @@ class ViewModel: ObservableObject {
         }
     }
     
+    // cannot throw on this one, due to the fact it is used from Button press handler
     func refreshEmployees() {
         
         fetching = true
