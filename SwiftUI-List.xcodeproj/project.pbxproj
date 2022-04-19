@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA7C4930280F29E400CF6936 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C492F280F29E400CF6936 /* NetworkError.swift */; };
 		AAC391F427DE7D2D0038239F /* EmployeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391F227DE7D2D0038239F /* EmployeeView.swift */; };
 		AAC391F527DE7D2D0038239F /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391F327DE7D2D0038239F /* ListView.swift */; };
 		AAC391F727DE7D370038239F /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391F627DE7D370038239F /* Employee.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA7C492F280F29E400CF6936 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		AAC391F227DE7D2D0038239F /* EmployeeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeView.swift; sourceTree = "<group>"; };
 		AAC391F327DE7D2D0038239F /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		AAC391F627DE7D370038239F /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				AAC391F627DE7D370038239F /* Employee.swift */,
+				AA7C492F280F29E400CF6936 /* NetworkError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAC391F927DE7E3E0038239F /* ViewModel.swift in Sources */,
+				AA7C4930280F29E400CF6936 /* NetworkError.swift in Sources */,
 				AAC391F427DE7D2D0038239F /* EmployeeView.swift in Sources */,
 				AAC391F727DE7D370038239F /* Employee.swift in Sources */,
 				AAE7B5D227D89C1100C086BC /* SwiftUI_ListApp.swift in Sources */,

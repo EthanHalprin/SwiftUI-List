@@ -7,17 +7,10 @@
 import SwiftUI
 
 
-struct NetworkError: Identifiable {
-    var id = UUID()
-    var code: Int
-    var title: String
-    var description: String
-}
-
 struct ListView: View {
 
     @StateObject var viewModel = ViewModel(url: "https://raw.githubusercontent.com/EthanHalprin/github_EthanHalprin.github.io/master/company_repo.json")
-
+    
     var body: some View {
         NavigationView {
             List(self.viewModel.employees) { employee in
@@ -45,18 +38,7 @@ struct ListView: View {
              }
         }
         .task {
-            do {
-                try await viewModel.fetchEmployees()
-            } catch {
-                print("Fetching employees failed with error: \(error.localizedDescription)")
-                guard let urlError = error as? URLError else {
-                    fatalError("Unknown Error. If this keeps happening, contact your system administrator")
-                }
-                self.viewModel.networkError = NetworkError(code: urlError.code.rawValue,
-                                                 title: "Network",
-                                                 description: urlError.localizedDescription)
-                self.viewModel.didError = true
-            }
+            await fetchTaskHandler()
         }
         .alert(viewModel.networkError?.title ?? "", isPresented: $viewModel.didError, presenting: viewModel.networkError) { error in
             Button {
@@ -66,6 +48,23 @@ struct ListView: View {
             }
         } message: { error in
             Text("\nError \(error.code): " + error.description + "\n")
+        }
+    }
+}
+
+extension ListView {
+    fileprivate func fetchTaskHandler() async {
+        do {
+            try await viewModel.fetchEmployees()
+        } catch {
+            print("Fetching employees failed with error: \(error.localizedDescription)")
+            guard let urlError = error as? URLError else {
+                fatalError("Unknown Error. If this keeps happening, contact your system administrator")
+            }
+            self.viewModel.networkError = NetworkError(code: urlError.code.rawValue,
+                                                       title: "Network",
+                                                       description: urlError.localizedDescription)
+            self.viewModel.didError = true
         }
     }
 }
