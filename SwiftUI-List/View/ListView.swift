@@ -17,10 +17,7 @@ struct NetworkError: Identifiable {
 struct ListView: View {
 
     @StateObject var viewModel = ViewModel(url: "https://raw.githubusercontent.com/EthanHalprin/github_EthanHalprin.github.io/master/company_repo.json")
-    
-    @State var didError = false
-    @State var networkError: NetworkError?
-    
+
     var body: some View {
         NavigationView {
             List(self.viewModel.employees) { employee in
@@ -55,13 +52,13 @@ struct ListView: View {
                 guard let urlError = error as? URLError else {
                     fatalError("Unknown Error. If this keeps happening, contact your system administrator")
                 }
-                self.networkError = NetworkError(code: urlError.code.rawValue,
+                self.viewModel.networkError = NetworkError(code: urlError.code.rawValue,
                                                  title: "Network",
                                                  description: urlError.localizedDescription)
-                didError = true
+                self.viewModel.didError = true
             }
         }
-        .alert(networkError?.title ?? "", isPresented: $didError, presenting: networkError) { error in
+        .alert(viewModel.networkError?.title ?? "", isPresented: $viewModel.didError, presenting: viewModel.networkError) { error in
             Button {
                 print("Network error alert closed")
             } label: {
