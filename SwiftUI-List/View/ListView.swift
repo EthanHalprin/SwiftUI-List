@@ -18,9 +18,8 @@ struct ListView: View {
                     .listRowSeparator(.visible)
                     .listRowSeparatorTint(.black)
             }.listStyle(PlainListStyle())
-             .overlay {
-                 FetcherOverlay(fetching: viewModel.fetching)
-             }
+             .padding(.top, 20)
+             .overlay { FetcherOverlay(fetching: viewModel.fetching) }
              .animation(.default, value: viewModel.hats)
              .navigationBarTitle("Mesh Truckers")
              .toolbar {

@@ -13,7 +13,7 @@ class ListViewModel: ObservableObject {
     @Published var hats = [Hat]()
     @Published var fetching = false
     @Published var didError = false
-    fileprivate let dataUrl = "https://raw.githubusercontent.com/EthanHalprin/OrderingAppData/main/storeData.json?token=GHSAT0AAAAAABTXEURGDSOCTAZZAG5N5XBMYS7DGPQ"
+    fileprivate let dataUrl = "https://raw.githubusercontent.com/EthanHalprin/OrderingAppData/main/storeData.json?token=GHSAT0AAAAAABTXEURG7CYGOFOJOIXKNFGOYS7DP4A"
     var networkError: NetworkError?
     var cache = ImageCache()
     private var lastFetchTimestamp: TimeInterval?
