@@ -20,7 +20,7 @@ struct ListView: View {
             }.listStyle(PlainListStyle())
              .padding(.top, 20)
              .overlay {
-                 FetcherOverlay(fetching: $viewModel.fetching)
+                 FetcherOverlayView(fetching: $viewModel.fetching)
              }
              .animation(.default, value: viewModel.hats)
              .navigationBarTitle("Mesh Truckers")
@@ -45,20 +45,6 @@ struct ListView: View {
     }
 }
 
-struct FetcherOverlay: View {
-    
-    @Binding var fetching: Bool
-    
-    var body: some View {
-        if fetching {
-            Color(.systemBackground)
-                .edgesIgnoringSafeArea(.all)
-            ProgressView("Fetching data, please wait...")
-               .progressViewStyle(CircularProgressViewStyle(tint: .accentColor))
-        }
-    }
-}
-
 extension ListView {
     fileprivate func fetchTaskHandler() async {
         do {
@@ -78,6 +64,19 @@ extension ListView {
     }
 }
 
+struct FetcherOverlayView: View {
+    
+    @Binding var fetching: Bool
+    
+    var body: some View {
+        if fetching {
+            Color(.systemBackground)
+                .edgesIgnoringSafeArea(.all)
+            ProgressView("Fetching data, please wait...")
+               .progressViewStyle(CircularProgressViewStyle(tint: .accentColor))
+        }
+    }
+}
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
         ListView()
