@@ -1,5 +1,6 @@
 # SwiftUI-List
-Example for a List in SwiftUI. Content is loaded dynamically from a file server. Images are fetched and cached.
+Example for a List in SwiftUI. Content is loaded dynamically from a file server containing json data.
+Images are fetched and cached.
 
 Features:
 
@@ -11,7 +12,7 @@ Features:
 
 * Image cache
 
-* Image Placholders
+* Image Placeholders
 
 * Timeout
 
