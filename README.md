@@ -1,24 +1,18 @@
 # SwiftUI-List
-Example for a List in SwiftUI. Content is loaded dynamically from a file server containing json data.
-Images are fetched and cached.
+Example for a List in SwiftUI.
 
 Features:
 
-* MVVM
-
-* Combine Networking
-
-* AsyncImage
-
-* Image cache
-
-* Image Placeholders
-
-* Timeout
-
+* MVVM design pattern
+* iOS Combine for Networking
+* Async/Await mechanism when fetching data
+* AsyncImage for downling images (Note that iOS 15 and above is required here)
+* Timeout for fetching
+* Cache for images (NSCache)
+* Placeholders
 * Refresh Button
-
-* ProgressView
+* Navigation link for each cell (opens a details view)
+* ProgressView for main list + for each image
 
 [Pre-Requisities: iOS 15 Xcode 13]
 
@@ -28,13 +22,12 @@ MIT
 ## Sample
 ![Screenshot](List-Screenshot-iPhone13Pro.png)
 
-### Avatar Pics Credits
+### Artwork
 
-Refer to image urls in json
+Images shown in list are from Shopify. See images urls im my gist here:
 
-https://github.com/EthanHalprin/github_EthanHalprin.github.io/blob/master/company_repo.json
+https://gist.githubusercontent.com/raw/3b15d0220b17236514acf8803835ded6/hat_store.json
 
-The default avatar
+The default avatar is from Stockio
 
-https://thumbs.dreamstime.com/b/default-female-avatar-profile-picture-icon-grey-woman-photo-placeholder-vector-illustration-88413637.jpg
-
+https://www.stockio.com/free-icon/baseball-cap
