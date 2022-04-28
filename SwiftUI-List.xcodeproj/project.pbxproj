@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA625C4C281AD3DD007A6E8B /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA625C4B281AD3DD007A6E8B /* PageViewController.swift */; };
 		AA678193280F368F00CA4CAB /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA678192280F368F00CA4CAB /* ImageCache.swift */; };
 		AA678195280F4A2700CA4CAB /* Hat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA678194280F4A2700CA4CAB /* Hat.swift */; };
 		AA678197280F4A7200CA4CAB /* HatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA678196280F4A7200CA4CAB /* HatViewModel.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA625C4B281AD3DD007A6E8B /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		AA678192280F368F00CA4CAB /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		AA678194280F4A2700CA4CAB /* Hat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hat.swift; sourceTree = "<group>"; };
 		AA678196280F4A7200CA4CAB /* HatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HatViewModel.swift; sourceTree = "<group>"; };
@@ -87,6 +89,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA625C4A281AD378007A6E8B /* PageViewSlider */ = {
+			isa = PBXGroup;
+			children = (
+				AA625C4B281AD3DD007A6E8B /* PageViewController.swift */,
+			);
+			path = PageViewSlider;
+			sourceTree = "<group>";
+		};
 		AAC391EE27DE7CC50038239F /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +110,7 @@
 		AAC391EF27DE7CD30038239F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AA625C4A281AD378007A6E8B /* PageViewSlider */,
 				AAC391F327DE7D2D0038239F /* ListView.swift */,
 				AAC391F227DE7D2D0038239F /* HatView.swift */,
 			);
@@ -315,6 +326,7 @@
 			files = (
 				AAC391F927DE7E3E0038239F /* ViewModel.swift in Sources */,
 				AA7C4930280F29E400CF6936 /* NetworkError.swift in Sources */,
+				AA625C4C281AD3DD007A6E8B /* PageViewController.swift in Sources */,
 				AA678193280F368F00CA4CAB /* ImageCache.swift in Sources */,
 				AAC391F427DE7D2D0038239F /* HatView.swift in Sources */,
 				AAC391F727DE7D370038239F /* Store.swift in Sources */,
