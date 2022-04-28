@@ -10,7 +10,7 @@ import SwiftUI
 struct ListView: View {
 
     @StateObject var viewModel = ListViewModel()
-    
+
     var body: some View {
         NavigationView {
             List(self.viewModel.hats) { hat in
@@ -19,9 +19,7 @@ struct ListView: View {
                     .listRowSeparatorTint(.black)
             }.listStyle(PlainListStyle())
              .padding(.top, 20)
-             .overlay {
-                 FetcherOverlayView(fetching: $viewModel.fetching)
-             }
+             .overlay { FetcherOverlayView(fetching: $viewModel.fetching) }
              .animation(.default, value: viewModel.hats)
              .navigationBarTitle("Mesh Truckers")
              .toolbar {
