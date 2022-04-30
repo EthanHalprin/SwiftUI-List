@@ -7,7 +7,7 @@
 import SwiftUI
 
 
-struct ListView: View {
+struct HatListView: View {
 
     @StateObject var viewModel = ListViewModel()
 
@@ -43,7 +43,7 @@ struct ListView: View {
     }
 }
 
-extension ListView {
+extension HatListView {
     fileprivate func fetchTaskHandler() async {
         do {
             try await viewModel.fetchMerchandise()
@@ -77,7 +77,7 @@ struct FetcherOverlayView: View {
 }
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView()
+        HatListView()
     }
 }
 

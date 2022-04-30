@@ -13,7 +13,7 @@
 		AA678197280F4A7200CA4CAB /* HatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA678196280F4A7200CA4CAB /* HatViewModel.swift */; };
 		AA7C4930280F29E400CF6936 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C492F280F29E400CF6936 /* NetworkError.swift */; };
 		AAC391F427DE7D2D0038239F /* HatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391F227DE7D2D0038239F /* HatView.swift */; };
-		AAC391F527DE7D2D0038239F /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391F327DE7D2D0038239F /* ListView.swift */; };
+		AAC391F527DE7D2D0038239F /* HatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391F327DE7D2D0038239F /* HatListView.swift */; };
 		AAC391F727DE7D370038239F /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391F627DE7D370038239F /* Store.swift */; };
 		AAC391F927DE7E3E0038239F /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391F827DE7E3E0038239F /* ViewModel.swift */; };
 		AAC391FC27DE84AC0038239F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC391FB27DE84AC0038239F /* NetworkService.swift */; };
@@ -49,7 +49,7 @@
 		AA678196280F4A7200CA4CAB /* HatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HatViewModel.swift; sourceTree = "<group>"; };
 		AA7C492F280F29E400CF6936 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		AAC391F227DE7D2D0038239F /* HatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HatView.swift; sourceTree = "<group>"; };
-		AAC391F327DE7D2D0038239F /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		AAC391F327DE7D2D0038239F /* HatListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HatListView.swift; sourceTree = "<group>"; };
 		AAC391F627DE7D370038239F /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		AAC391F827DE7E3E0038239F /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		AAC391FB27DE84AC0038239F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				AA625C4A281AD378007A6E8B /* PageViewSlider */,
-				AAC391F327DE7D2D0038239F /* ListView.swift */,
+				AAC391F327DE7D2D0038239F /* HatListView.swift */,
 				AAC391F227DE7D2D0038239F /* HatView.swift */,
 			);
 			path = View;
@@ -332,7 +332,7 @@
 				AAC391F727DE7D370038239F /* Store.swift in Sources */,
 				AAE7B5D227D89C1100C086BC /* SwiftUI_ListApp.swift in Sources */,
 				AA678195280F4A2700CA4CAB /* Hat.swift in Sources */,
-				AAC391F527DE7D2D0038239F /* ListView.swift in Sources */,
+				AAC391F527DE7D2D0038239F /* HatListView.swift in Sources */,
 				AA678197280F4A7200CA4CAB /* HatViewModel.swift in Sources */,
 				AAC391FC27DE84AC0038239F /* NetworkService.swift in Sources */,
 			);
