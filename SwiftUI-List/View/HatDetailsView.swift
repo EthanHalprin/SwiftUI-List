@@ -9,20 +9,33 @@ import SwiftUI
 
 struct HatDetailsView: View {
     
+    let screenWidth  = UIScreen.main.bounds.width
+    let screenHeight = UIScreen.main.bounds.height
+
     var body: some View {
         
-        VStack {
-            Image("stockio.com.hat")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height * 0.33)
+        ZStack {
+  
+            Color.red
+                .ignoresSafeArea()
             
-            DetailsMainText(title: "German Sheperd", description: "A hat carrying a german sheperd icon in olive green full color")
-                .padding(.bottom, 50)  // just bottom
+            VStack {
 
-            AddButtonView()
+                Image("FreeVector-Hat-Illustration")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxWidth: .infinity, maxHeight: screenHeight * 0.33)
+                
+                DetailsMainText(title: "German Sheperd", description: "A hat carrying a german sheperd icon in olive green full color")
+                    .padding(.bottom, 50)
+
+                AddButtonView()
+            }
+            .frame(width: screenWidth * 0.8, height: screenHeight * 0.8)
+            .background(Color(.systemBackground))
+            .cornerRadius(10)
+            .shadow(radius: 40)
         }
-        
     }
 }
 
@@ -87,7 +100,7 @@ struct HatFeatureView: View {
 struct AddButtonView: View {
     var body: some View {
         Button(action: /* ("Delete", role: .destructive) */  {
-            print("Button action")
+            print("Add Button action")
         }) {
             HStack(spacing: 10) {
                 Text("Add")

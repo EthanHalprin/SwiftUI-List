@@ -14,9 +14,11 @@ struct HatListView: View {
     var body: some View {
         NavigationView {
             List(self.viewModel.hats) { hat in
-                HatView(viewModel: HatViewModel(hat: hat))
-                    .listRowSeparator(.visible)
-                    .listRowSeparatorTint(.black)
+                NavigationLink(destination: HatDetailsView()) {
+                    HatView(viewModel: HatViewModel(hat: hat))
+                        .listRowSeparator(.visible)
+                        .listRowSeparatorTint(.black)
+                }
             }.listStyle(PlainListStyle())
              .padding(.top, 20)
              .overlay {
