@@ -10,6 +10,7 @@ import SwiftUI
 struct HatListView: View {
 
     @StateObject var viewModel = ListViewModel()
+    @State var isPresented = false
 
     var body: some View {
         NavigationView {

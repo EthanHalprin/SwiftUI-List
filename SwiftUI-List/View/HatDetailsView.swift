@@ -45,8 +45,39 @@ struct HatDetailsView: View {
         .background(Color(.systemBackground))
         .cornerRadius(15)
         .shadow(radius: 50)
+        .overlay(Button(action: {
+        }) {
+            ZStack {
+                Circle()
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(Color.white)
+                    .opacity(0.6)
+                
+                Image(systemName: "xmark")
+                    .frame(width: 30, height: 30, alignment: .center)
+                    .foregroundColor(Color.red)
+                }
+                .padding(5)
+            } ,
+            alignment: .topTrailing)
     }
 }
+
+struct HatDetailsView_Previews: PreviewProvider {
+    static var previews: some View {
+        HatDetailsView(hat: Hat(id: "1234",
+                                type: "mesh",
+                                animal: "German Sheperd",
+                                title: "Bouncer",
+                                size: "OS",
+                                hatDescription: "An olive green mesh hat with cap",
+                                pic: ""))
+    }
+}
+
+//
+// =========================== Auxillary struct ======================================================
+//
 
 struct DetailsStack: View {
     
@@ -79,18 +110,6 @@ struct DetailsCellView: View {
                 .italic()
                 .minimumScaleFactor(0.1)
         }
-    }
-}
-
-struct HatDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        HatDetailsView(hat: Hat(id: "1234",
-                                type: "mesh",
-                                animal: "German Sheperd",
-                                title: "Bouncer",
-                                size: "OS",
-                                hatDescription: "An olive green mesh hat with cap",
-                                pic: ""))
     }
 }
 
