@@ -8,37 +8,22 @@ import Foundation
 import SwiftUI
 
 
-class suString: NSObject {
-    var data = ""
-    
-    init(_ data: String) {
-        self.data = data
-    }
-}
-
-class suImage: NSObject {
-    var image = Image("")
-
-    init(_ image: Image) {
-        self.image = image
-    }
-}
-
 class ImageCache {
-    static var shared = NSCache<suString, suImage>()
+    
+    fileprivate static var cache = NSCache<CacheKey, CacheValue>()
     
     init() {
         // maximum fixed cost: 100MB
-        ImageCache.shared.totalCostLimit = 100_000_000
+        ImageCache.cache.totalCostLimit = 100_000_000
     }
     
     static func getImage(by url: String) -> Image? {
         
-        let key = suString(url)
+        let key = CacheKey(url)
         
-        if let cachedImage = ImageCache.shared.object(forKey: key) {
+        if let cachedValue = ImageCache.cache.object(forKey: key) {
             print("----------- Cache Hit √ -------------------")
-            return cachedImage.image
+            return cachedValue.image
         } else {
             print("----------- Cache Miss X ------------------")
             return nil
@@ -46,13 +31,34 @@ class ImageCache {
     }
     
     static func setImage(_ image: Image, url: String) {
-        let img = suImage(image)
-        let key = suString(url)
-        ImageCache.shared.setObject(img, forKey: key)
+        print("STORE:  \(url)")
+        ImageCache.cache.setObject(CacheValue(image), forKey: CacheKey(url))
+        
+        if let cachedValue = ImageCache.cache.object(forKey: CacheKey(url)) {
+            print("\(cachedValue.image)")
+        }
     }
     
     static func flush() {
-        ImageCache.shared.removeAllObjects()
+        ImageCache.cache.removeAllObjects()
+    }
+}
+
+extension ImageCache {
+    class CacheKey: NSObject {
+        var data = ""
+        
+        init(_ data: String) {
+            self.data = data
+        }
+    }
+
+    class CacheValue: NSObject {
+        var image = Image("")
+
+        init(_ image: Image) {
+            self.image = image
+        }
     }
 }
 

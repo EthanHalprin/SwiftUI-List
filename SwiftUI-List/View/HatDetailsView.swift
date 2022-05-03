@@ -7,41 +7,88 @@
 
 import SwiftUI
 
+
 struct HatDetailsView: View {
     
-    let screenWidth  = UIScreen.main.bounds.width
-    let screenHeight = UIScreen.main.bounds.height
+    @State var hat: Hat
 
     var body: some View {
         
-        ZStack {
-  
-            Color.red
-                .ignoresSafeArea()
+        VStack {
+            Image("FreeVector-Hat-Illustration")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 300, height: 225)
+        
+            Text("\(hat.title)")
+                .font(.title2)
+                .fontWeight(.semibold)
             
+            Text("\(hat.hatDescription)")
+                .multilineTextAlignment(.center)
+                .font(.body)
+                .padding()
+
+            DetailsStack(hat: $hat)
+        }
+    }
+}
+
+struct DetailsStack: View {
+    
+    @Binding var hat: Hat
+    
+    var body: some View {
+        HStack(spacing: 20) {
+            
+            // Type
             VStack {
-
-                Image("FreeVector-Hat-Illustration")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: .infinity, maxHeight: screenHeight * 0.33)
-                
-                DetailsMainText(title: "German Sheperd", description: "A hat carrying a german sheperd icon in olive green full color")
-                    .padding(.bottom, 50)
-
-                AddButtonView()
+                Text("TYPE")
+                    .fontWeight(.semibold)
+                    .font(.caption)
+                    .padding()
+                Text("\(hat.type)")
+                    .foregroundColor(.blue)
+                    .fontWeight(.medium)
+                    .italic()
             }
-            .frame(width: screenWidth * 0.8, height: screenHeight * 0.8)
-            .background(Color(.systemBackground))
-            .cornerRadius(10)
-            .shadow(radius: 40)
+            
+            // Animal
+            VStack {
+                Text("ANIMAL")
+                    .fontWeight(.semibold)
+                    .font(.caption)
+                    .padding()
+                Text("\(hat.animal)")
+                    .foregroundColor(.blue)
+                    .fontWeight(.medium)
+                    .italic()
+            }
+            
+            // Size
+            VStack {
+                Text("SIZE")
+                    .fontWeight(.semibold)
+                    .font(.caption)
+                    .padding()
+                Text("\(hat.size)")
+                    .foregroundColor(.blue)
+                    .fontWeight(.medium)
+                    .italic()
+            }
         }
     }
 }
 
 struct HatDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        HatDetailsView()
+        HatDetailsView(hat: Hat(id: "1234",
+                                type: "mesh",
+                                animal: "German Sheperd",
+                                title: "Bouncer",
+                                size: "OS",
+                                hatDescription: "An olive green mesh hat with cap",
+                                pic: ""))
     }
 }
 

@@ -14,7 +14,7 @@ struct HatListView: View {
     var body: some View {
         NavigationView {
             List(self.viewModel.hats) { hat in
-                NavigationLink(destination: HatDetailsView()) {
+                NavigationLink(destination: HatDetailsView(hat: hat)) {
                     HatView(viewModel: HatViewModel(hat: hat))
                         .listRowSeparator(.visible)
                         .listRowSeparatorTint(.black)

@@ -22,7 +22,9 @@ struct HatView: View {
                     image
                         .resizable()
                         .frame(width: viewModel.width, height: viewModel.height)
-                        .onAppear { ImageCache.setImage(image, url: viewModel.hat.pic) }
+                        .onAppear {
+                            ImageCache.setImage(image, url: viewModel.hat.pic)
+                        }
                 } placeholder: {
                     if viewModel.picTimeout == 0 {
                         Image("stockio.com.hat")
