@@ -10,9 +10,10 @@ import SwiftUI
 
 struct HatDetailsView: View {
     
-    @State var hat: Hat
+    var hat: Hat
     let width: CGFloat = 300.0
-    
+    @Binding var isShowing: Bool
+
     var body: some View {
         
         VStack {
@@ -32,7 +33,7 @@ struct HatDetailsView: View {
                 .minimumScaleFactor(0.1)
                 .padding()
 
-            DetailsStack(hat: $hat, width: width)
+            DetailsStack(hat: hat, width: width)
                 .padding()
             
             Spacer()
@@ -46,6 +47,7 @@ struct HatDetailsView: View {
         .cornerRadius(15)
         .shadow(radius: 50)
         .overlay(Button(action: {
+            self.isShowing = false
         }) {
             ZStack {
                 Circle()
@@ -71,24 +73,25 @@ struct HatDetailsView_Previews: PreviewProvider {
                                 title: "Bouncer",
                                 size: "OS",
                                 hatDescription: "An olive green mesh hat with cap",
-                                pic: ""))
+                                pic: ""),
+                       isShowing: .constant(true))
     }
 }
 
 //
-// =========================== Auxillary struct ======================================================
+// =========================== Infrastructure ======================================================
 //
 
 struct DetailsStack: View {
     
-    @Binding var hat: Hat
+    var hat: Hat
     var width: CGFloat
     
     var body: some View {
         HStack(spacing: 10) {
-            DetailsCellView(hat: $hat, key: "Type",   value: "\(hat.type)")
-            DetailsCellView(hat: $hat, key: "Animal", value: "\(hat.animal)")
-            DetailsCellView(hat: $hat, key: "Size",   value: "\(hat.size)")
+            DetailsCellView(hat: hat, key: "Type",   value: "\(hat.type)")
+            DetailsCellView(hat: hat, key: "Animal", value: "\(hat.animal)")
+            DetailsCellView(hat: hat, key: "Size",   value: "\(hat.size)")
         }
         .frame(width: width)
     }
@@ -96,7 +99,7 @@ struct DetailsStack: View {
 
 struct DetailsCellView: View {
     
-    @Binding var hat: Hat
+    var hat: Hat
     var key: String
     var value: String
     
@@ -121,10 +124,10 @@ struct AddToCartButtonView: View {
             HStack(spacing: 10) {
                 Text("Add")
                     .font(.callout)
-                    .fontWeight(.medium)
+                    .fontWeight(.semibold)
                 Image(systemName: "cart.badge.plus")
             }
-            .frame(width: 200, height: 15, alignment: .center)
+            .frame(width: 200, height: 20, alignment: .center)
             .padding(8)
             .background(Color.blue)
             .foregroundColor(Color.white)

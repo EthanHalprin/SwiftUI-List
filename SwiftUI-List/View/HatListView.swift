@@ -10,41 +10,67 @@ import SwiftUI
 struct HatListView: View {
 
     @StateObject var viewModel = ListViewModel()
-    @State var isPresented = false
+    @State var isDetailsViewShowing = false
 
     var body: some View {
-        NavigationView {
-            List(self.viewModel.hats) { hat in
-                NavigationLink(destination: HatDetailsView(hat: hat)) {
+            
+        ZStack {
+            
+            NavigationView {
+
+                List(self.viewModel.hats) { hat in
                     HatView(viewModel: HatViewModel(hat: hat))
                         .listRowSeparator(.visible)
                         .listRowSeparatorTint(.black)
-                }
-            }.listStyle(PlainListStyle())
-             .padding(.top, 20)
-             .overlay {
-                 FetcherOverlayView(fetching: $viewModel.fetching)
-             }
-             .animation(.default, value: viewModel.hats)
-             .navigationBarTitle("Mesh Truckers")
-             .toolbar {
-                 Button { self.viewModel.refreshMerchandise() }
-                 label: { Image(systemName: "arrow.counterclockwise") }
-             }
-        }
-        .task { await fetchTaskHandler() }
-        .alert(viewModel.networkError?.title ?? "Error",
-               isPresented: $viewModel.didError,
-               presenting: viewModel.networkError) { error in
-            Button {
-                print("Network error alert closed")
+                        .onTapGesture {
+                            self.isDetailsViewShowing = true
+                        }
+                }.listStyle(PlainListStyle())
+                 .padding(.top, 20)
+                 .overlay { FetcherOverlayView(fetching: $viewModel.fetching) }
+                 .animation(.default, value: viewModel.hats)
+                 .toolbar {
+                     Button { self.viewModel.refreshMerchandise() }
+                     label: { Image(systemName: "arrow.counterclockwise") }
+                 }
+                 .navigationTitle("Mesh Truckers")
+                 .disabled(isDetailsViewShowing)
             }
-            label: {
-                Text("Close")
+            .task {
+                await fetchTaskHandler()
             }
-        } message: { error in
-            Text("\nError \(error.code): " + error.description + "\n")
+            .blur(radius: self.isDetailsViewShowing ? 10 : 0)
+
+            if isDetailsViewShowing {
+                HatDetailsView(hat: Hat(id: "1234",
+                                        type: "mesh",
+                                        animal: "German Sheperd",
+                                        title: "Bouncer",
+                                        size: "OS",
+                                        hatDescription: "An olive green mesh hat with cap",
+                                        pic: ""),
+                               isShowing: $isDetailsViewShowing)
+            }
+
+//            .alert(viewModel.networkError?.title ?? "Error",
+//                   isPresented: $viewModel.didError,
+//                   presenting: viewModel.networkError) { error in
+//                Button {
+//                    print("Network error alert closed")
+//                }
+//                label: {
+//                    Text("Close")
+//                }
+//            } message: { error in
+//                Text("\nError \(error.code): " + error.description + "\n")
+//            }
         }
+    }
+}
+
+struct ListView_Previews: PreviewProvider {
+    static var previews: some View {
+        HatListView()
     }
 }
 
@@ -80,9 +106,3 @@ struct FetcherOverlayView: View {
         }
     }
 }
-struct ListView_Previews: PreviewProvider {
-    static var previews: some View {
-        HatListView()
-    }
-}
-
