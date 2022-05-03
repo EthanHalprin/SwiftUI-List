@@ -11,15 +11,16 @@ import SwiftUI
 struct HatDetailsView: View {
     
     @State var hat: Hat
-
+    let width: CGFloat = 300.0
+    
     var body: some View {
         
         VStack {
             Image("FreeVector-Hat-Illustration")
                 .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 300, height: 225)
-                .cornerRadius(15)
+                .aspectRatio(contentMode: .fill)
+                .frame(width: width, height: 200)
+                .padding(.bottom, 15)
         
             Text("\(hat.title)")
                 .font(.title2)
@@ -28,9 +29,10 @@ struct HatDetailsView: View {
             Text("\(hat.hatDescription)")
                 .multilineTextAlignment(.center)
                 .font(.body)
+                .minimumScaleFactor(0.1)
                 .padding()
 
-            DetailsStack(hat: $hat)
+            DetailsStack(hat: $hat, width: width)
                 .padding()
             
             Spacer()
@@ -39,19 +41,25 @@ struct HatDetailsView: View {
             
             Spacer()
         }
+        .frame(width: width, height: 550)
+        .background(Color(.systemBackground))
+        .cornerRadius(15)
+        .shadow(radius: 50)
     }
 }
 
 struct DetailsStack: View {
     
     @Binding var hat: Hat
+    var width: CGFloat
     
     var body: some View {
-        HStack(spacing: 20) {
-            DetailsCellView(hat: $hat, key: "TYPE",   value: "\(hat.type)")
-            DetailsCellView(hat: $hat, key: "ANIMAL", value: "\(hat.animal)")
-            DetailsCellView(hat: $hat, key: "SIZE",   value: "\(hat.size)")
+        HStack(spacing: 10) {
+            DetailsCellView(hat: $hat, key: "Type",   value: "\(hat.type)")
+            DetailsCellView(hat: $hat, key: "Animal", value: "\(hat.animal)")
+            DetailsCellView(hat: $hat, key: "Size",   value: "\(hat.size)")
         }
+        .frame(width: width)
     }
 }
 
@@ -62,15 +70,14 @@ struct DetailsCellView: View {
     var value: String
     
     var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 2) {
             Text(key)
-                .font(.body)
                 .padding()
             Text(value)
-                .foregroundColor(.blue)
+                .foregroundColor(.red)
                 .fontWeight(.medium)
-                .font(.body)
                 .italic()
+                .minimumScaleFactor(0.1)
         }
     }
 }
@@ -94,13 +101,13 @@ struct AddToCartButtonView: View {
         }) {
             HStack(spacing: 10) {
                 Text("Add")
-                    .font(.title3)
+                    .font(.callout)
                     .fontWeight(.medium)
                 Image(systemName: "cart.badge.plus")
             }
-            .frame(width: 200, height: 20, alignment: .center)
-            .padding(10.0)
-            .background(Color(red: 0.2, green: 0.4, blue: 0.85))
+            .frame(width: 200, height: 15, alignment: .center)
+            .padding(8)
+            .background(Color.blue)
             .foregroundColor(Color.white)
             .clipShape(Capsule())
         }
