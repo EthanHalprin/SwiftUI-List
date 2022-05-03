@@ -19,6 +19,7 @@ struct HatDetailsView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 300, height: 225)
+                .cornerRadius(15)
         
             Text("\(hat.title)")
                 .font(.title2)
@@ -30,6 +31,13 @@ struct HatDetailsView: View {
                 .padding()
 
             DetailsStack(hat: $hat)
+                .padding()
+            
+            Spacer()
+            
+            AddToCartButtonView()
+            
+            Spacer()
         }
     }
 }
@@ -40,42 +48,29 @@ struct DetailsStack: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            
-            // Type
-            VStack {
-                Text("TYPE")
-                    .fontWeight(.semibold)
-                    .font(.caption)
-                    .padding()
-                Text("\(hat.type)")
-                    .foregroundColor(.blue)
-                    .fontWeight(.medium)
-                    .italic()
-            }
-            
-            // Animal
-            VStack {
-                Text("ANIMAL")
-                    .fontWeight(.semibold)
-                    .font(.caption)
-                    .padding()
-                Text("\(hat.animal)")
-                    .foregroundColor(.blue)
-                    .fontWeight(.medium)
-                    .italic()
-            }
-            
-            // Size
-            VStack {
-                Text("SIZE")
-                    .fontWeight(.semibold)
-                    .font(.caption)
-                    .padding()
-                Text("\(hat.size)")
-                    .foregroundColor(.blue)
-                    .fontWeight(.medium)
-                    .italic()
-            }
+            DetailsCellView(hat: $hat, key: "TYPE",   value: "\(hat.type)")
+            DetailsCellView(hat: $hat, key: "ANIMAL", value: "\(hat.animal)")
+            DetailsCellView(hat: $hat, key: "SIZE",   value: "\(hat.size)")
+        }
+    }
+}
+
+struct DetailsCellView: View {
+    
+    @Binding var hat: Hat
+    var key: String
+    var value: String
+    
+    var body: some View {
+        VStack(spacing: 4) {
+            Text(key)
+                .font(.body)
+                .padding()
+            Text(value)
+                .foregroundColor(.blue)
+                .fontWeight(.medium)
+                .font(.body)
+                .italic()
         }
     }
 }
@@ -92,71 +87,18 @@ struct HatDetailsView_Previews: PreviewProvider {
     }
 }
 
-struct DetailsMainText: View {
-    
-    var title: String
-    var description: String
-
+struct AddToCartButtonView: View {
     var body: some View {
-        
-        VStack(alignment: .center) {
-            Text("\(self.title)")
-                .fontWeight(.bold)
-                .font(.body)
-                .padding()
-        
-            Text("\(self.description)")
-                .fontWeight(.regular)
-                .font(.body)
-                .multilineTextAlignment(.center)
-                .padding()
-                .padding(.bottom, 30)
-
-                        
-            HStack(spacing: 50) {
-                HatFeatureView(key: "type", value: "Mesh")
-                HatFeatureView(key: "size", value: "OS")
-                HatFeatureView(key: "price", value: "$$")
-            }
-        }
-    }
-}
-
-struct HatFeatureView: View {
-    
-    var key: String
-    var value: String
-    
-    var body: some View {
-        
-        VStack(alignment: .center, spacing: 10) {
-            
-            Text("\(self.key)")
-                .foregroundColor(Color.black)
-                .font(.body)
-                .fontWeight(.medium)
-
-            Text("\(self.value)")
-                .foregroundColor(Color.blue)
-                .font(.body)
-                .fontWeight(.regular)
-        }
-    }
-}
-
-struct AddButtonView: View {
-    var body: some View {
-        Button(action: /* ("Delete", role: .destructive) */  {
+        Button(action: {
             print("Add Button action")
         }) {
             HStack(spacing: 10) {
                 Text("Add")
                     .font(.title3)
                     .fontWeight(.medium)
-                
                 Image(systemName: "cart.badge.plus")
             }
-            .frame(width: 150, height: 30, alignment: .center)
+            .frame(width: 200, height: 20, alignment: .center)
             .padding(10.0)
             .background(Color(red: 0.2, green: 0.4, blue: 0.85))
             .foregroundColor(Color.white)
