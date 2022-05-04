@@ -20,7 +20,7 @@ class ListViewModel: ObservableObject {
     private lazy var network = NetworkService()
     
     
-    func fetchMerchandise() async throws {
+    func fetchData() async throws {
         
         /* Test Alert (to be removed)
          

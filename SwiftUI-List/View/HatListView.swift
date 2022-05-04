@@ -14,9 +14,9 @@ struct HatListView: View {
 
     var body: some View {
             
-        ZStack {
+        NavigationView {
             
-            NavigationView {
+            ZStack {
 
                 List(self.viewModel.hats) { hat in
                     HatView(viewModel: HatViewModel(hat: hat))
@@ -26,8 +26,10 @@ struct HatListView: View {
                             self.isDetailsViewShowing = true
                         }
                 }.listStyle(PlainListStyle())
-                 .padding(.top, 20)
-                 .overlay { FetcherOverlayView(fetching: $viewModel.fetching) }
+              //   .padding(.top, 20)
+                 .overlay {
+                     FetcherOverlayView(fetching: $viewModel.fetching)
+                 }
                  .animation(.default, value: viewModel.hats)
                  .toolbar {
                      Button { self.viewModel.refreshMerchandise() }
@@ -35,22 +37,25 @@ struct HatListView: View {
                  }
                  .navigationTitle("Mesh Truckers")
                  .disabled(isDetailsViewShowing)
-            }
-            .task {
-                await fetchTaskHandler()
-            }
-            .blur(radius: self.isDetailsViewShowing ? 10 : 0)
+                 .task {
+                     await fetchTaskHandler()
+                 }
+                 .blur(radius: self.isDetailsViewShowing ? 10 : 0)
 
-            if isDetailsViewShowing {
-                HatDetailsView(hat: Hat(id: "1234",
-                                        type: "mesh",
-                                        animal: "German Sheperd",
-                                        title: "Bouncer",
-                                        size: "OS",
-                                        hatDescription: "An olive green mesh hat with cap",
-                                        pic: ""),
-                               isShowing: $isDetailsViewShowing)
+                if isDetailsViewShowing {
+                    HatDetailsView(hat: Hat(id: "1234",
+                                            type: "mesh",
+                                            animal: "German Sheperd",
+                                            title: "Bouncer",
+                                            size: "OS",
+                                            hatDescription: "An olive green mesh hat with cap",
+                                            pic: ""),
+                                   isShowing: $isDetailsViewShowing)
+                }
+
             }
+            
+
 
 //            .alert(viewModel.networkError?.title ?? "Error",
 //                   isPresented: $viewModel.didError,
@@ -77,9 +82,9 @@ struct ListView_Previews: PreviewProvider {
 extension HatListView {
     fileprivate func fetchTaskHandler() async {
         do {
-            try await viewModel.fetchMerchandise()
+            try await viewModel.fetchData()
         } catch {
-            print("Fetching merchandise failed with error: \(error.localizedDescription)")
+            print("Fetching data failed with error: \(error.localizedDescription)")
             guard let urlError = error as? URLError else {
                 fatalError("Unknown Error. If this keeps happening, contact your system administrator")
             }
