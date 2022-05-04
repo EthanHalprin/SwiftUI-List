@@ -15,9 +15,7 @@ struct HatListView: View {
     var body: some View {
             
         NavigationView {
-            
             ZStack {
-
                 List(self.viewModel.hats) { hat in
                     HatView(viewModel: HatViewModel(hat: hat))
                         .listRowSeparator(.visible)
@@ -26,7 +24,7 @@ struct HatListView: View {
                             self.isDetailsViewShowing = true
                         }
                 }.listStyle(PlainListStyle())
-              //   .padding(.top, 20)
+                 .padding()
                  .overlay {
                      FetcherOverlayView(fetching: $viewModel.fetching)
                  }
@@ -53,22 +51,19 @@ struct HatListView: View {
                                    isShowing: $isDetailsViewShowing)
                 }
 
+            } // ZStack
+            .alert(viewModel.networkError?.title ?? "Error",
+                   isPresented: $viewModel.didError,
+                   presenting: viewModel.networkError) { error in
+                Button {
+                    print("Network error alert closed")
+                }
+                label: {
+                    Text("Close")
+                }
+            } message: { error in
+                Text("\nError \(error.code): " + error.description + "\n")
             }
-            
-
-
-//            .alert(viewModel.networkError?.title ?? "Error",
-//                   isPresented: $viewModel.didError,
-//                   presenting: viewModel.networkError) { error in
-//                Button {
-//                    print("Network error alert closed")
-//                }
-//                label: {
-//                    Text("Close")
-//                }
-//            } message: { error in
-//                Text("\nError \(error.code): " + error.description + "\n")
-//            }
         }
     }
 }
