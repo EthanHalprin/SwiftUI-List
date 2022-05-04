@@ -50,7 +50,6 @@ struct HatListView: View {
                                             pic: ""),
                                    isShowing: $isDetailsViewShowing)
                 }
-
             } // ZStack
             .alert(viewModel.networkError?.title ?? "Error",
                    isPresented: $viewModel.didError,

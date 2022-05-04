@@ -22,14 +22,19 @@ class ListViewModel: ObservableObject {
     
     func fetchData() async throws {
         
-        /* Test Alert (to be removed)
-         
+        //
+        // Testing the network error .alert :
+        // Uncomment this block.
+        //
+        // *TBD - this is temp. Need to devise a Test for this
+        //
+        /*
         let code = URLError.Code(rawValue: 500)
         let err = URLError(code)
         throw err
-         
+        return
          */
-
+        
         if let lastFetch = self.lastFetchTimestamp {
             let currTime = NSDate().timeIntervalSince1970
             // 2 minutes refesh minimal
