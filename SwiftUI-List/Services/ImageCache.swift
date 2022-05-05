@@ -8,58 +8,68 @@ import Foundation
 import SwiftUI
 
 
-class ImageCache {
+final class Cache<Key: Hashable, Value> {
+    private let cacheRef = NSCache<WrappedKey, Entry>()
     
-    fileprivate static var cache = NSCache<CacheKey, CacheValue>()
-    
-    init() {
-        // maximum fixed cost: 100MB
-        ImageCache.cache.totalCostLimit = 100_000_000
+    func insert(_ value: Value, forKey key: Key) {
+        let entry = Entry(value: value)
+        cacheRef.setObject(entry, forKey: WrappedKey(key))
     }
     
-    static func getImage(by url: String) -> Image? {
-        
-        let key = CacheKey(url)
-        
-        if let cachedValue = ImageCache.cache.object(forKey: key) {
-            print("----------- Cache Hit √ -------------------")
-            return cachedValue.image
-        } else {
-            print("----------- Cache Miss X ------------------")
-            return nil
+    func value(forKey key: Key) -> Value? {
+        let entry = cacheRef.object(forKey: WrappedKey(key))
+        print(entry == nil ? "-----------CACHE MISS-----------" : "-----------CACHE HIT-----------")
+        return entry?.value
+    }
+    
+    func removeValue(forKey key: Key) {
+        cacheRef.removeObject(forKey: WrappedKey(key))
+    }
+    
+    func flush() {
+        cacheRef.removeAllObjects()
+    }
+    
+    subscript(key: Key) -> Value? {
+        get {
+            return value(forKey: key)
         }
-    }
-    
-    static func setImage(_ image: Image, url: String) {
-        print("STORE:  \(url)")
-        ImageCache.cache.setObject(CacheValue(image), forKey: CacheKey(url))
-        
-        if let cachedValue = ImageCache.cache.object(forKey: CacheKey(url)) {
-            print("\(cachedValue.image)")
-        }
-    }
-    
-    static func flush() {
-        ImageCache.cache.removeAllObjects()
-    }
-}
-
-extension ImageCache {
-    class CacheKey: NSObject {
-        var data = ""
-        
-        init(_ data: String) {
-            self.data = data
-        }
-    }
-
-    class CacheValue: NSObject {
-        var image = Image("")
-
-        init(_ image: Image) {
-            self.image = image
+        set {
+            guard let value = newValue else {
+                // If nil was assigned using our subscript,
+                // then we remove any value for that key:
+                removeValue(forKey: key)
+                return
+            }
+            insert(value, forKey: key)
         }
     }
 }
 
+private extension Cache {
+    final class WrappedKey: NSObject {
+        let key: Key
 
+        init(_ key: Key) { self.key = key }
+
+        override var hash: Int { return key.hashValue }
+
+        override func isEqual(_ object: Any?) -> Bool {
+            guard let value = object as? WrappedKey else {
+                return false
+            }
+
+            return value.key == key
+        }
+    }
+}
+
+private extension Cache {
+    final class Entry {
+        let value: Value
+
+        init(value: Value) {
+            self.value = value
+        }
+    }
+}

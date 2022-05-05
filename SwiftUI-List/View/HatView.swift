@@ -13,7 +13,7 @@ struct HatView: View {
     
     var body: some View {
         HStack {
-            if let cachedImage = ImageCache.getImage(by: viewModel.hat.pic) {
+            if let cachedImage = viewModel.cache.value(forKey: viewModel.hat.pic) {
                 cachedImage
                     .resizable()
                     .frame(width: viewModel.width, height: viewModel.height)
@@ -23,35 +23,42 @@ struct HatView: View {
                         .resizable()
                         .frame(width: viewModel.width, height: viewModel.height)
                         .onAppear {
-                            ImageCache.setImage(image, url: viewModel.hat.pic)
+                            viewModel.cache.insert(image, forKey: viewModel.hat.pic)
                         }
                 } placeholder: {
-                    if viewModel.picTimeout == 0 {
-                        Image("stockio.com.hat")
-                            .resizable()
-                            .frame(width: viewModel.width, height: viewModel.height)
-                    } else {
-                        ProgressView()
-                    }
-                }
-                
-                VStack(alignment: .leading) {
-                    Text("\(viewModel.hat.title)")
-                        .font(.system(size: viewModel.primaryFontSize,
-                                      weight: .medium,
-                                      design: .default))
-                        .foregroundColor(Color(.label))
-                    Text("\(viewModel.hat.animal)")
-                        .font(.system(size: viewModel.secondaryFontSize,
-                                      weight: .regular,
-                                      design: .default))
-                        .foregroundColor(Color(.systemIndigo))
+                    Image("stockio.com.hat")
+                        .resizable()
+                        .frame(width: viewModel.width, height: viewModel.height)
                 }
             }
-        }.onReceive(viewModel.timer) { time in
-            if viewModel.picTimeout > 0 {
-                viewModel.picTimeout -= 1
-            }
+            
+            HatViewTextStack(title: viewModel.hat.title,
+                             animal: viewModel.hat.animal,
+                             primaryFontSize: viewModel.primaryFontSize,
+                             secondaryFontSize: viewModel.secondaryFontSize)
+        }
+    }
+}
+
+struct HatViewTextStack: View {
+    
+    var title: String
+    var animal: String
+    var primaryFontSize: CGFloat
+    var secondaryFontSize: CGFloat
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(title)
+                .font(.system(size: primaryFontSize,
+                              weight: .medium,
+                              design: .default))
+                .foregroundColor(Color(.label))
+            Text(animal)
+                .font(.system(size: secondaryFontSize,
+                              weight: .regular,
+                              design: .default))
+                .foregroundColor(Color(.systemIndigo))
         }
     }
 }

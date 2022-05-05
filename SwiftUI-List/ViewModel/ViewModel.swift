@@ -15,18 +15,18 @@ class ListViewModel: ObservableObject {
     @Published var didError = false
     fileprivate let dataUrl = "https://gist.githubusercontent.com/raw/3b15d0220b17236514acf8803835ded6/hat_store.json"
     var networkError: NetworkError?
-    var cache = ImageCache()
     private var lastFetchTimestamp: TimeInterval?
     private lazy var network = NetworkService()
+    let imageCache = Cache<String, Image>()
     
     
     func fetchData() async throws {
         
         //
-        // Testing the network error .alert :
-        // Uncomment this block.
+        // TBD
         //
-        // *TBD - this is temp. Need to devise a Test for this
+        // For testing the network error alert uncomment this block:
+        // (This is temporary - need to devise a UnitTest for this)
         //
         /*
         let code = URLError.Code(rawValue: 500)
@@ -70,8 +70,9 @@ class ListViewModel: ObservableObject {
             self.fetching = true
         }
         
-        ImageCache.flush()
         self.hats.removeAll()
+        self.imageCache.flush()
+        
         
         try? network.fetch(from: dataUrl, { [weak self] (container: StoreContainer) -> Void in
             guard let self = self else { return }

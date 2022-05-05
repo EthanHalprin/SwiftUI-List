@@ -10,8 +10,8 @@ import SwiftUI
 
 class HatViewModel: ObservableObject {
     
-    @Published var picTimeout: Int = 5
-    var hat = Hat()
+    var hat: Hat
+    var cache: Cache<String, Image>
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     let width: CGFloat = 45
@@ -21,7 +21,8 @@ class HatViewModel: ObservableObject {
     let primaryFontSize: CGFloat = 13
     let secondaryFontSize: CGFloat = 11
     
-    required init(hat: Hat) {
+    required init(hat: Hat, cache: Cache<String, Image>) {
         self.hat = hat
+        self.cache = cache
     }
 }

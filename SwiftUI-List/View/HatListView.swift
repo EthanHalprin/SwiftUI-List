@@ -17,7 +17,7 @@ struct HatListView: View {
         NavigationView {
             ZStack {
                 List(self.viewModel.hats) { hat in
-                    HatView(viewModel: HatViewModel(hat: hat))
+                    HatView(viewModel: HatViewModel(hat: hat, cache: viewModel.imageCache))
                         .listRowSeparator(.visible)
                         .listRowSeparatorTint(.black)
                         .onTapGesture {
