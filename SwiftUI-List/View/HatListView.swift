@@ -11,6 +11,7 @@ struct HatListView: View {
 
     @StateObject var viewModel = ListViewModel()
     @State var isDetailsViewShowing = false
+    @State var selected: Hat?
 
     var body: some View {
             
@@ -21,6 +22,7 @@ struct HatListView: View {
                         .listRowSeparator(.visible)
                         .listRowSeparatorTint(.black)
                         .onTapGesture {
+                            self.selected = hat
                             self.isDetailsViewShowing = true
                         }
                 }.listStyle(PlainListStyle())
@@ -41,15 +43,13 @@ struct HatListView: View {
                  .blur(radius: self.isDetailsViewShowing ? 10 : 0)
 
                 if isDetailsViewShowing {
-                    HatDetailsView(hat: Hat(id: "1234",
-                                            type: "mesh",
-                                            animal: "German Sheperd",
-                                            title: "Bouncer",
-                                            size: "OS",
-                                            hatDescription: "An olive green mesh hat with cap",
-                                            pic: ""),
-                                   isShowing: $isDetailsViewShowing)
+                    if let hat = self.selected {
+                        HatDetailsView(hat: hat,
+                                       cache: viewModel.imageCache,
+                                       isShowing: $isDetailsViewShowing)
+                    }
                 }
+                
             } // ZStack
             .alert(viewModel.networkError?.title ?? "Error",
                    isPresented: $viewModel.didError,

@@ -11,18 +11,34 @@ import SwiftUI
 struct HatDetailsView: View {
     
     var hat: Hat
-    let width: CGFloat = 300.0
+    var cache: Cache<String, Image>
     @Binding var isShowing: Bool
 
     var body: some View {
         
         VStack {
-            Image("FreeVector-Hat-Illustration")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: width, height: 200)
-                .padding(.bottom, 15)
-        
+            if let cachedImage = self.cache.value(forKey: hat.pic) {
+                cachedImage
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 130, height: 190)
+            } else {
+                AsyncImage(url: URL(string: hat.pic)) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 130, height: 190)
+                        .onAppear {
+                            self.cache.insert(image, forKey: hat.pic)
+                        }
+                } placeholder: {
+                    Image("stockio.com.hat")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 130, height: 190)
+                }
+            }
+
             Text("\(hat.title)")
                 .font(.title2)
                 .fontWeight(.semibold)
@@ -33,16 +49,16 @@ struct HatDetailsView: View {
                 .minimumScaleFactor(0.1)
                 .padding()
 
-            DetailsStack(hat: hat, width: width)
-                .padding()
-            
+            DetailsStack(hat: hat)
+                .frame(minWidth: 300, maxHeight: 40, alignment: .center)
+                     
             Spacer()
-            
+
             AddToCartButtonView()
             
             Spacer()
         }
-        .frame(width: width, height: 550)
+        .frame(width: 300, height: 560)
         .background(Color(.systemBackground))
         .cornerRadius(15)
         .shadow(radius: 50)
@@ -74,6 +90,7 @@ struct HatDetailsView_Previews: PreviewProvider {
                                 size: "OS",
                                 hatDescription: "An olive green mesh hat with cap",
                                 pic: ""),
+                       cache: Cache<String, Image>(),
                        isShowing: .constant(true))
     }
 }
@@ -85,15 +102,13 @@ struct HatDetailsView_Previews: PreviewProvider {
 struct DetailsStack: View {
     
     var hat: Hat
-    var width: CGFloat
-    
+
     var body: some View {
         HStack(spacing: 10) {
             DetailsCellView(hat: hat, key: "Type",   value: "\(hat.type)")
             DetailsCellView(hat: hat, key: "Animal", value: "\(hat.animal)")
             DetailsCellView(hat: hat, key: "Size",   value: "\(hat.size)")
         }
-        .frame(width: width)
     }
 }
 
@@ -104,14 +119,18 @@ struct DetailsCellView: View {
     var value: String
     
     var body: some View {
-        VStack(spacing: 2) {
+        VStack {
             Text(key)
+                .foregroundColor(.brown)
+                .font(Font.custom("Courier New", size: 15.0))
+                .fontWeight(.semibold)
+                .minimumScaleFactor(0.8)
                 .padding()
             Text(value)
-                .foregroundColor(.red)
+                .foregroundColor(.blue)
                 .fontWeight(.medium)
                 .italic()
-                .minimumScaleFactor(0.1)
+                .minimumScaleFactor(0.8)
         }
     }
 }
