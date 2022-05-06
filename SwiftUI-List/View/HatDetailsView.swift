@@ -59,7 +59,7 @@ struct HatDetailsView: View {
             Spacer()
         }
         .frame(width: 300, height: 560)
-        .background(Color(.systemBackground))
+        .background(Color(.white))
         .cornerRadius(15)
         .shadow(radius: 50)
         .overlay(Button(action: {
